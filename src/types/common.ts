@@ -11,11 +11,11 @@ export type UserRole = keyof typeof USER_ROLE;
 
 
 
-export interface DrawerItem {
+export interface ISidebarItem {
   title: string;
-  path?: string;
+  path?: string ;
   icon: React.ElementType;
-  subMenu?: DrawerItem[]; 
+  subMenu?: ISidebarItem[]; 
 }
 export type ResponseSuccessType = {
   data: any;

@@ -7,14 +7,16 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import AuthDropdown from "./AuthDropdown";
 import { ModeToggle } from "./ModeToggle";
+import useUserInfo from "@/hooks/useUserInfo";
 
 const Header = () => {
   const pathname = usePathname();
+  const user = useUserInfo();
 
   const menuItems = [
     { label: "Home", path: "/", show: true },
     { label: "About Us", path: "/about-us", show: true },
-    { label: "Dashboard", path: "/dashboard", show: true },
+    { label: "Dashboard", path: `/dashboard`, show: user },
   ];
 
   return (
