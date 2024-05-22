@@ -1,5 +1,8 @@
+
+
 "use client";
 
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AlignJustify, Package2 } from "lucide-react";
@@ -12,15 +15,30 @@ import useUserInfo from "@/hooks/useUserInfo";
 const Header = () => {
   const pathname = usePathname();
   const user = useUserInfo();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const menuItems = [
     { label: "Home", path: "/", show: true },
     { label: "About Us", path: "/about-us", show: true },
-    { label: "Dashboard", path: `/dashboard/${user?.role}`, show: user },
+    { label: "Dashboard", path: `/dashboard/${user?.role}`, show: !!user },
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 border-b z-50">
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
+        scrolled ? "shadow-md bg-background/90 backdrop-blur-md" : "bg-background/70"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <header className="flex h-16 items-center justify-between">
           <div className="flex items-center">
@@ -34,7 +52,7 @@ const Header = () => {
               <SheetContent side="left">
                 <Link
                   href="/"
-                  className="flex items-center gap-2 font-semibold"
+                  className="flex items-center gap-2 font-semibold text-foreground"
                 >
                   <Package2 className="h-6 w-6" />
                   <span className="">ShareNest</span>
@@ -49,7 +67,7 @@ const Header = () => {
                           pathname === menuItem.path
                             ? "border-b-2 border-blue-600"
                             : ""
-                        }`}
+                        } text-foreground`}
                       >
                         {menuItem.label}
                       </Link>
@@ -60,7 +78,10 @@ const Header = () => {
             </Sheet>
 
             <div className="hidden md:flex">
-              <Link href="/" className="flex items-center gap-2 font-semibold">
+              <Link
+                href="/"
+                className="flex items-center gap-2 font-semibold text-foreground"
+              >
                 <Package2 className="h-6 w-6" />
                 <span className="">ShareNest</span>
               </Link>
@@ -77,7 +98,7 @@ const Header = () => {
                     pathname === menuItem.path
                       ? "border-b-2 border-blue-600"
                       : ""
-                  }`}
+                  } text-foreground`}
                 >
                   {menuItem.label}
                 </Link>
