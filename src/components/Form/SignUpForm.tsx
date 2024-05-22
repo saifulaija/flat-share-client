@@ -22,6 +22,7 @@ import {
 } from "../ui/card";
 
 import Link from "next/link";
+import { useCreateUserMutation } from "@/redux/api/userApi";
 const formSchema = z
   .object({
     email: z.string().email({
@@ -37,22 +38,24 @@ const formSchema = z
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
-    message:'password do not match!!!'
+    message: "password do not match!!!",
   });
 
 const SignUpForm = () => {
+  const [createUser,{isLoading,isError}]=useCreateUserMutation()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
       userName: "",
-      confirmPassword:''
+      confirmPassword: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async(values: z.infer<typeof formSchema>) => {
+    const res=await createUser(values)
+    console.log(res);
   };
   return (
     <Form {...form}>
