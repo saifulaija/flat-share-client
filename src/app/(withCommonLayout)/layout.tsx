@@ -1,16 +1,17 @@
+import Footer from "@/components/shared/Header/Footer"
 import Header from "@/components/shared/Header/Header"
 
 
 
 const CommonLayout = ({children}:{children:React.ReactNode}) => {
   return (
-    <>
+    <div className="flex h-screen flex-col">
         <Header/>
-        <div className='min-h-[cal(100vh-190px)]'>
+        <main className='flex-1 wrapper'>
       {children}
-      </div>
-     
-    </>
+      </main>
+     <Footer/>
+    </div>
   )
 }
 

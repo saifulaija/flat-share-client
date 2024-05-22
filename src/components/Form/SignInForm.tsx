@@ -46,7 +46,7 @@ const SignInForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <Card className="w-full max-w-md space-y-4 p-4">
+        <Card className="w-full max-w-md space-y-4 p-4 border-0 shadow-sm">
           <CardHeader>
             <CardTitle className="text-2xl">Login</CardTitle>
             <CardDescription>

@@ -57,7 +57,7 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <Card className="w-full max-w-lg space-y-2 p-4">
+        <Card className="w-full max-w-lg space-y-2 px-10 py-1 border-0 shadow-sm">
           <CardHeader>
             <CardTitle className="text-xl">Register</CardTitle>
             <CardDescription>
