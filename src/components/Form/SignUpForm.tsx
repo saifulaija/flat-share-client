@@ -1,6 +1,7 @@
 "use client";
 
-import { date, z } from "zod";
+import { z } from "zod";
+
 import {
   Form,
   FormControl,
@@ -23,6 +24,10 @@ import {
 
 import Link from "next/link";
 import { useCreateUserMutation } from "@/redux/api/userApi";
+
+import { useRouter } from "next/navigation";
+
+import { toast } from "../ui/use-toast";
 const formSchema = z
   .object({
     email: z.string().email({
@@ -42,7 +47,8 @@ const formSchema = z
   });
 
 const SignUpForm = () => {
-  const [createUser,{isLoading,isError}]=useCreateUserMutation()
+  const router = useRouter();
+  const [createUser, { isLoading, isError }] = useCreateUserMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,9 +59,19 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit = async(values: z.infer<typeof formSchema>) => {
-    const res=await createUser(values)
-    console.log(res);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const res = await createUser(values).unwrap();
+      if (res?.id) {
+        toast({
+          title: "Success!",
+          description: `User created successfully`,
+        });
+        router.push("/login");
+      }
+    } catch (err: any) {
+      toast(err?.message);
+    }
   };
   return (
     <Form {...form}>
@@ -136,7 +152,7 @@ const SignUpForm = () => {
               </FormItem>
             )}
           />
-          <Button className="w-[100%]" type="submit">
+          <Button className="w-[100%] mt-2" type="submit">
             SignUp
           </Button>
 

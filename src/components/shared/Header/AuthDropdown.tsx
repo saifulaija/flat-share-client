@@ -7,10 +7,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useUserInfo from "@/hooks/useUserInfo";
+import { logoutUser } from "@/services/actions/logoutUser";
 import { CircleUser } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
+  const user = useUserInfo();
+  console.log(user);
+  const router = useRouter();
+  const handleLogout = () => {
+    logoutUser(router);
+  };
+
   return (
     <div>
       <DropdownMenu>
@@ -26,10 +36,14 @@ const AuthDropdown = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <Link href="/login">
-            {" "}
-            <DropdownMenuItem>Login</DropdownMenuItem>
-          </Link>
+
+          {user && user?.userId ? (
+            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+          ) : (
+            <Link href="/login">
+              <DropdownMenuItem>Login</DropdownMenuItem>
+            </Link>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

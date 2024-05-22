@@ -5,12 +5,13 @@ import Header from "@/components/shared/Header/Header"
 
 const CommonLayout = ({children}:{children:React.ReactNode}) => {
   return (
-    <div className="flex h-screen flex-col">
+    <div>
         <Header/>
-        <main className='flex-1 wrapper'>
+        <div className="min-h-screen wrapper">
       {children}
-      </main>
-     <Footer/>
+      </div>
+      <Footer/>
+     
     </div>
   )
 }

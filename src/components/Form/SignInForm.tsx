@@ -22,6 +22,10 @@ import {
 } from "../ui/card";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
+import { useState } from "react";
+import { signInUser } from "@/services/actions/signInUser";
+import { storeUserInfo } from "@/services/authServics";
+import { toast } from "../ui/use-toast";
 const formSchema = z.object({
   email: z.string().email({
     message: "Please enter valid email",
@@ -32,6 +36,7 @@ const formSchema = z.object({
 });
 
 const SignInForm = () => {
+  const [error, setError] = useState("");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,7 +45,24 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+
+    try {
+      const res = await signInUser(values);
+
+      if (res?.data?.accessToken) {
+        storeUserInfo({ accessToken: res?.data?.accessToken });
+        toast({
+          title: "Success!",
+          description: `${res?.message}`,
+        });
+        // router.push("/dashboard");
+      } else {
+        setError(res?.message);
+      }
+    } catch (err: any) {
+      setError(err?.message);
+    }
     console.log(values);
   };
   return (
