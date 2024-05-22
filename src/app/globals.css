@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground p-0 m-0;
   }
 }
 
@@ -99,3 +99,4 @@
     @apply font-bold text-xl lg:text-2xl
   }
 }
+

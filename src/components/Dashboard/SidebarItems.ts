@@ -67,7 +67,7 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
         },
         {
           title: "Request Flats",
-          path: `${role}/request-flats`,
+          path: `${role}/requested_flats`,
           icon: UserCog,
         }
       );
