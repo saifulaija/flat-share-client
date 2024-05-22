@@ -5,8 +5,8 @@ import SignUpForm from "@/components/Form/SignUpForm";
 
 const RegisterPage = () => {
   return (
-    <div className="flex items-center justify-center p-2">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 bg-white p-4 rounded-lg shadow-md">
+    <div className="flex items-center justify-center">
+      <div  className="flex flex-col md:flex-row items-center justify-center gap-8 border px-8 py-1 rounded-lg shadow-md">
         <div className="w-full max-w-md">
           <SignUpForm />
         </div>
