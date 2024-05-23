@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const uploadImage = async (file: File) => {
+  console.log(file)
     const formData = new FormData();
     formData.append("image", file);
     formData.append("key", "9afc585cc916e23b2756a9946d82ec0e");
@@ -10,6 +11,3 @@ export const uploadImage = async (file: File) => {
     );
     return imageResponse.data.data.url;
   };
-
-
-  
