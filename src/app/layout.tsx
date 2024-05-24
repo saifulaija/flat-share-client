@@ -6,6 +6,7 @@ import { Poppins as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import Providers from "@/lib/providers/Providers";
+import { Toaster } from "sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,9 +39,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            
             {children}
           </ThemeProvider>
         </Providers>
+        <Toaster/>
       </body>
     </html>
   );

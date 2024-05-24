@@ -27,6 +27,7 @@ import { Label } from "../ui/label";
 import { uploadImage } from "@/utils/imgbb";
 import { useCreateFlatMutation } from "@/redux/api/flatApi";
 import useUserInfo from "@/hooks/useUserInfo";
+import { space } from "postcss/lib/list";
 
 const formSchema = z.object({
   description: z.string().min(6, { message: "Description at least 6 characters" }),
@@ -35,6 +36,7 @@ const formSchema = z.object({
   bedRooms: z.string().min(1, { message: "Enter number of bed rooms" }),
   rentAmount: z.string().min(1, "Rent amount must be provided"),
   advanceAmount: z.string().min(1, "Advance amount must be provided"),
+  space: z.string().min(1, "Flat space must be provided"),
   image: z.any(),
 });
 
@@ -51,6 +53,7 @@ const AddFlatForm = () => {
       advanceAmount: "",
       bedRooms: "",
       amenities: "",
+      space:"",
       image:null
     },
   });
@@ -62,15 +65,15 @@ const AddFlatForm = () => {
     } else {
       values.image = '';
     }
-    values.rentAmount = Number(values.rentAmount);
-    values.advanceAmount = Number(values.advanceAmount);
+    
 
     
 
    try {
 
-    console.log(values,'values--------------------')
+
     const res=await createFlat(values).unwrap();
+    console.log(values)
     if (res?.id) {
         toast({
           title: "Success!",
@@ -187,6 +190,24 @@ const AddFlatForm = () => {
                     required
                       type="text"
                       placeholder="Enter amenities..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="space"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Space</FormLabel>
+                  <FormControl>
+                    <Input
+                    required
+                      type="text"
+                      placeholder="Enter flat space..."
                       {...field}
                     />
                   </FormControl>

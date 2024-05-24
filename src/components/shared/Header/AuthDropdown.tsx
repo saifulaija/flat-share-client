@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
   const user = useUserInfo();
-  console.log(user);
+
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);

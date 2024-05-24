@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client"
 import {
   PageActions,
   PageHeader,
@@ -6,10 +6,26 @@ import {
   PageHeaderHeading,
 } from "./PageHeader";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../../ui/button";
 import { Announcement } from "./Announcement";
+import useUserInfo from "@/hooks/useUserInfo";
 
 export const Hero = () => {
+  const user =useUserInfo();
+
+  const handleFlatShareClick = () => {
+    if (!user?.userId) {
+      const confirmLogin = window.confirm("You need to log in first. Would you like to go to the login page?");
+      if (confirmLogin) {
+        window.location.href = '/login';
+      }
+    } else {
+      // If user is already logged in, proceed to blog page
+      window.location.href = `/flat-share`;
+    }
+  };
+
+
   return (
     <div className=" relative container">
       <PageHeader>
@@ -26,12 +42,12 @@ export const Hero = () => {
           verified, and easy to book.
         </PageHeaderDescription>
         <PageActions>
-          <Link
-            href="/flat-share"
+          <Button
+           onClick={handleFlatShareClick}
             className={cn(buttonVariants(), "rounded-[6px]")}
           >
             Share Your Flat
-          </Link>
+          </Button>
         </PageActions>
       </PageHeader>
     </div>

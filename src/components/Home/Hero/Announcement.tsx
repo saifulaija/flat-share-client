@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import { ArrowRightIcon, Blocks } from "lucide-react"
-import { Separator } from "../ui/separator"
+import { Separator } from "../../ui/separator"
 
 
 

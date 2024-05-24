@@ -16,10 +16,9 @@ import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
-  CardDescription,
+
   CardFooter,
-  CardHeader,
-  CardTitle,
+
 } from "../ui/card";
 
 import Link from "next/link";
@@ -28,6 +27,7 @@ import { useCreateUserMutation } from "@/redux/api/userApi";
 import { useRouter } from "next/navigation";
 
 import { toast } from "../ui/use-toast";
+import { uploadImage } from "@/utils/imgbb";
 const formSchema = z
   .object({
     email: z.string().email({
@@ -39,6 +39,11 @@ const formSchema = z
     userName: z.string().min(1, {
       message: "Enter your yserName",
     }),
+    contactNumber: z.string().min(1, {
+      message: "Enter your contact number",
+    }),
+    profilePhoto: z.any(),
+
     confirmPassword: z.string().min(6, "password confirmation is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -56,12 +61,23 @@ const SignUpForm = () => {
       password: "",
       userName: "",
       confirmPassword: "",
+      profilePhoto: null,
+      contactNumber: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (values.profilePhoto && values.profilePhoto.length > 0) {
+      const url = await uploadImage(values.profilePhoto[0]);
+      values.profilePhoto = url;
+    } else {
+      values.profilePhoto = "";
+    }
+
+    console.log(values,'values.........')
     try {
       const res = await createUser(values).unwrap();
+      console.log(res,'res...........')
       if (res?.id) {
         toast({
           title: "Success!",
@@ -76,82 +92,112 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <Card className="w-full max-w-lg space-y-2 px-10 py-1 border-0 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-xl">Register</CardTitle>
-            <CardDescription>
-              Enter your email below to login to your account.
-            </CardDescription>
-          </CardHeader>
+        <Card className="w-full space-y-4 px-10 py-6 border-0 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+            <FormField
+              control={form.control}
+              name="userName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input type="text" placeholder="jondho" {...field} />
+                  </FormControl>
 
-          <FormField
-            control={form.control}
-            name="userName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input type="text" placeholder="jondho" {...field} />
-                </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      {...field}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    {...field}
-                  />
-                </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Enter your password"
-                    {...field}
-                  />
-                </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Re-Enter your password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Re-Enter your password"
+                      {...field}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Re-Enter your password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Re-Enter your password"
-                    {...field}
-                  />
-                </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="contactNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>contactNumber</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Contact Number.."
+                      {...field}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="profilePhoto"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>profilePhoto</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => field.onChange(e.target.files)}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <Button className="w-[100%] mt-2" type="submit">
             SignUp
           </Button>

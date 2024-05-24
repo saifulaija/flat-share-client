@@ -25,7 +25,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { signInUser } from "@/services/actions/signInUser";
 import { storeUserInfo } from "@/services/authServics";
-import { toast } from "../ui/use-toast";
+import { toast } from "sonner";
+
 const formSchema = z.object({
   email: z.string().email({
     message: "Please enter valid email",
@@ -52,10 +53,7 @@ const SignInForm = () => {
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        toast({
-          title: "Success!",
-          description: `${res?.message}`,
-        });
+        toast.success('user login successfully')
         // router.push("/dashboard");
       } else {
         setError(res?.message);
