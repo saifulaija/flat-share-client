@@ -140,7 +140,8 @@ const Flats = () => {
 
   const { data, isLoading } = useGetAllFlatsQuery({...query});
 
-  const flats = data?.flats?.data;
+  const flats = data?.flats?.data
+
   const meta = data?.meta;
 
   if (isLoading) {
@@ -178,7 +179,7 @@ const Flats = () => {
       </div>
       <div className="flex gap-3 justify-center items-center flex-wrap">
         {flats && flats.length > 0 ? (
-          flats.map((flat, index) => <FlatCard key={index} flat={flat} />)
+          flats.map((flat:any, index:any) => <FlatCard key={index} flat={flat} />)
         ) : (
           <NoData />
         )}

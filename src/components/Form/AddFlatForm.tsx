@@ -1,4 +1,3 @@
-
 "use client";
 
 import { z } from "zod";
@@ -23,14 +22,15 @@ import {
 } from "../ui/card";
 import { useRouter } from "next/navigation";
 import { toast } from "../ui/use-toast";
-import { Label } from "../ui/label";
+
 import { uploadImage } from "@/utils/imgbb";
 import { useCreateFlatMutation } from "@/redux/api/flatApi";
 import useUserInfo from "@/hooks/useUserInfo";
-import { space } from "postcss/lib/list";
 
 const formSchema = z.object({
-  description: z.string().min(6, { message: "Description at least 6 characters" }),
+  description: z
+    .string()
+    .min(6, { message: "Description at least 6 characters" }),
   location: z.string().min(1, { message: "Location must be provided" }),
   amenities: z.string().min(1, { message: "Enter flat amenities" }),
   bedRooms: z.string().min(1, { message: "Enter number of bed rooms" }),
@@ -42,7 +42,7 @@ const formSchema = z.object({
 
 const AddFlatForm = () => {
   const router = useRouter();
-  const user =useUserInfo()
+  const user = useUserInfo();
   const [createFlat, { isLoading, isError }] = useCreateFlatMutation();
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -53,40 +53,30 @@ const AddFlatForm = () => {
       advanceAmount: "",
       bedRooms: "",
       amenities: "",
-      space:"",
-      image:null
+      space: "",
+      image: null,
     },
   });
 
-  const onSubmit = async (values:any) => {
+  const onSubmit = async (values: any) => {
     if (values.image && values.image.length > 0) {
       const url = await uploadImage(values.image[0]);
       values.image = url;
     } else {
-      values.image = '';
+      values.image = "";
     }
-    
 
-    
-
-   try {
-
-
-    const res=await createFlat(values).unwrap();
-    console.log(values)
-    if (res?.id) {
+    try {
+      const res = await createFlat(values).unwrap();
+      console.log(values);
+      if (res?.id) {
         toast({
           title: "Success!",
           description: `Flat created successfully`,
         });
-        router.push(`/dashboard/${user?.role}/flats`);
+        router.push(`/dashboard/${user?.role}/shared-flats`);
       }
-    console.log(res,'res-------------------')
-   } catch (error) {
-    
-   }
-   
-
+    } catch (error) {}
   };
 
   return (
@@ -101,7 +91,12 @@ const AddFlatForm = () => {
                 <FormItem>
                   <FormLabel>Location</FormLabel>
                   <FormControl>
-                    <Input required type="text" placeholder="Location..." {...field} />
+                    <Input
+                      required
+                      type="text"
+                      placeholder="Location..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,7 +110,12 @@ const AddFlatForm = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input required type="text" placeholder="Description" {...field} />
+                    <Input
+                      required
+                      type="text"
+                      placeholder="Description"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,7 +130,7 @@ const AddFlatForm = () => {
                   <FormLabel>Rent Amount</FormLabel>
                   <FormControl>
                     <Input
-                    required
+                      required
                       type="number"
                       placeholder="Enter rent amount..."
                       {...field}
@@ -149,7 +149,7 @@ const AddFlatForm = () => {
                   <FormLabel>Advance Amount</FormLabel>
                   <FormControl>
                     <Input
-                    required
+                      required
                       type="number"
                       placeholder="Enter advance amount..."
                       {...field}
@@ -168,7 +168,7 @@ const AddFlatForm = () => {
                   <FormLabel>Bed Rooms</FormLabel>
                   <FormControl>
                     <Input
-                    required
+                      required
                       type="text"
                       placeholder="Enter bed rooms..."
                       {...field}
@@ -187,7 +187,7 @@ const AddFlatForm = () => {
                   <FormLabel>Amenities</FormLabel>
                   <FormControl>
                     <Input
-                    required
+                      required
                       type="text"
                       placeholder="Enter amenities..."
                       {...field}
@@ -205,7 +205,7 @@ const AddFlatForm = () => {
                   <FormLabel>Space</FormLabel>
                   <FormControl>
                     <Input
-                    required
+                      required
                       type="text"
                       placeholder="Enter flat space..."
                       {...field}

@@ -39,7 +39,7 @@ const flatsApi = baseApi.injectEndpoints({
     }),
     getMyFlats: build.query({
       query: (arg: Record<string, any>) => ({
-        url: `/flat/my-flats`,
+        url: `/flat/get-my-flats`,
         method: "GET",
         params: arg,
       }),
@@ -53,7 +53,7 @@ const flatsApi = baseApi.injectEndpoints({
     }),
     getSingleFlat: build.query({
       query: (id) => ({
-        url: `/flat/${id}`,
+        url: `/flat/get-single-flat/${id}`,
         method: "GET",
        
       }),

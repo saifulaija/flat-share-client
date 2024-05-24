@@ -4,33 +4,31 @@ import {  ISidebarItem, UserRole } from "@/types";
 import { UserCog } from "lucide-react";
 
 import {
-    Bell,
-    CircleUser,
+  
     Home,
-    LineChart,
-    Menu,
-    Package,
-    Package2,
-    Search,
-    ShoppingCart,
+   
     Users,
     Container,
-    KeySquare,
-    FileKey
+   PanelsTopLeft,
+   Columns4,
+    FileKey,
+    Cuboid,
+    Album
   } from "lucide-react";
 
 export const drawerItems = (role: UserRole): ISidebarItem[] => {
   const roleMenus: ISidebarItem[] = [];
   const defaultMenus = [
-    {
-      title: "Profile",
-      path: `${role}/profile`,
-      icon: UserCog,
-    },
+   
     {
       title: "Change Password",
       path: `change-password`,
       icon: FileKey,
+    },
+    {
+      title: "Profile",
+      path: `${role}/profile`,
+      icon: UserCog,
     },
   ];
   switch (role) {
@@ -58,17 +56,22 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
         {
           title: "Dashboard",
           path: `${role}`,
-          icon: UserCog,
+          icon: Columns4,
         },
         {
-          title: "Flats",
+          title: "Add Flats",
           path: `${role}/flats`,
-          icon: UserCog,
+          icon: PanelsTopLeft,
+        },
+        {
+          title: "Shared Flats",
+          path: `${role}/shared-flats`,
+          icon: Cuboid,
         },
         {
           title: "Request Flats",
           path: `${role}/requested_flats`,
-          icon: UserCog,
+          icon: Album,
         }
       );
 

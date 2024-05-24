@@ -1,3 +1,6 @@
+import DetailsCard from "./components/DetailsCard"
+
+
 type TProps={
     params:{
         flatId:string
@@ -5,8 +8,13 @@ type TProps={
 }
 
 const FlatDetailsPage = ({params}:TProps) => {
+  const id= params.flatId
+ 
+ 
   return (
-    <div>FlatDetailsPage {params.flatId}</div>
+    <div>
+      <DetailsCard id={id}/>
+    </div>
   )
 }
 

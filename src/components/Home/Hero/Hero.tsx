@@ -21,7 +21,7 @@ export const Hero = () => {
       }
     } else {
       // If user is already logged in, proceed to blog page
-      window.location.href = `/flat-share`;
+      window.location.href = `/dashboard/${user?.role}/flats`;
     }
   };
 

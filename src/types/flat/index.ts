@@ -4,7 +4,7 @@ enum Status {
     REJECTED = "REJECTED"
   }
 
-export interface IFlat {
+export interface IFlatData {
     id: string;
     location: string;
     description: string;
@@ -19,6 +19,11 @@ export interface IFlat {
     updatedAt: Date;
     images?: Image[];
     bookings?: Booking[];
+  }
+ export interface IFlat {
+    flats: {
+      data: IFlatData[];
+    };
   }
   
   // Image Model

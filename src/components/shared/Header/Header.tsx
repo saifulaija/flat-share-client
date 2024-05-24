@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -31,13 +29,14 @@ const Header = () => {
     { label: "Home", path: "/", show: true },
     { label: "About Us", path: "/about-us", show: true },
     { label: "Dashboard", path: `/dashboard/${user?.role}`, show: !!user },
-    { label: "Flat Share", path: '/flat-share', show: !!user },
   ];
 
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
-        scrolled ? "shadow-md bg-background/90 backdrop-blur-md" : "bg-background/70"
+        scrolled
+          ? "shadow-md bg-background/90 backdrop-blur-md"
+          : "bg-background/70"
       }`}
     >
       <div className="container mx-auto px-4">

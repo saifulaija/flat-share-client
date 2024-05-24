@@ -12,9 +12,9 @@ import { DollarSign, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import useUserInfo from '@/hooks/useUserInfo';
 
-import { IFlat, IFlatData } from '@/types/flat';
 
-const FlatCard = ({ flat }:any ) => {
+
+const  MyFlatCard = ({ flat }:any ) => {
   const user =useUserInfo();
   // const user = getUserInfo()
   console.log(user)
@@ -30,7 +30,7 @@ const FlatCard = ({ flat }:any ) => {
 
 
   return (
-    <Card className='shadow-xl w-96 max-h-[500px] h-full overflow-hidden group'>
+    <Card className='shadow-xl w-[350px]  h-auto overflow-hidden group'>
       <CardHeader>
         <Image
         className='group-hover:scale-90   group-hover:duration-300 group-hover:transition'
@@ -55,13 +55,15 @@ const FlatCard = ({ flat }:any ) => {
       <CardContent>
         {/* Display truncated description */}
         <p>{truncateDescription(flat?.description)}</p>
+        <p>Rooms:{flat?.bedRooms}</p>
       </CardContent>
       <CardFooter className='flex-between'>
     
-          <p>Rooms:{flat?.bedRooms}</p>
+        
          
           
          <Link href={`/flats/details/${flat?.id}`}>  <Button>Details</Button></Link>
+         <Button>Delete</Button>
         
          
     
@@ -70,4 +72,4 @@ const FlatCard = ({ flat }:any ) => {
   );
 };
 
-export default FlatCard;
+export default MyFlatCard;

@@ -1,37 +1,4 @@
-// import React from "react";
-// import assets from "@/assets";
-// import Image from "next/image";
-// import SignUpForm from "@/components/Form/SignUpForm";
 
-// const RegisterPage = () => {
-//   return (
- 
-       
-//       <div className="flex items-center justify-center mt-16 max-w-[100px] ">
-//      <div className="border px-8 py-4 rounded-lg shadow-md">
-//         <p className="text-center text-xl font-semibold text-primary">Register Now</p>
-//           <div  className="flex flex-col md:flex-row items-center justify-center gap-8 ">
-      
-//             <div className="w-full max-w-[600px]">
-//               <SignUpForm />
-//             </div>
-    
-//             <div className="flex-shrink-0">
-//               <Image
-//                 src={assets.svg.login}
-//                 width={200}
-//                 height={200}
-//                 alt="Login Illustration"
-//               />
-//             </div>
-//           </div>
-//      </div>
-//       </div>
-
-//   );
-// };
-
-// export default RegisterPage;
 
 
 

@@ -36,6 +36,18 @@ import SidebarLink from "./SidebarLink";
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const { role } = getUserInfo();
     setUserRole(role);
@@ -45,7 +57,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
-        <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex h-full max-h-screen flex-col gap-2 fixed">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Package2 className="h-6 w-6" />
@@ -59,14 +71,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               {sidebarItems.map((item, index) => (
-                // <Link
-                //   key={item.title}
-                //   href={item.path}
-                //   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                // >
-                //   <item.icon className="h-4 w-4" />
-                //   {item.title}
-                // </Link>
                 <SidebarLink key={index} item={item} />
               ))}
             </nav>
@@ -92,15 +96,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 {sidebarItems.map((item, index) => (
-                  // <Link
-                  //   key={item.title}
-                  //   href={item.path}
-                  //   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                  // >
-                  //   <item.icon className="h-4 w-4" />
-                  //   {item.title}
-                  // </Link>
-
                   <SidebarLink key={index} item={item} />
                 ))}
               </nav>
@@ -110,6 +105,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
+   
             <form>
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
