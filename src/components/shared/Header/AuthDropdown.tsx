@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useToast } from "@/components/ui/use-toast";
 import useUserInfo from "@/hooks/useUserInfo";
 import { logoutUser } from "@/services/actions/logoutUser";
 import { CircleUser } from "lucide-react";
@@ -14,11 +15,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
+  const{toast}=useToast()
   const user = useUserInfo();
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
+    toast({title:'Logout',description:'user logout successfully'})
   };
 
   return (

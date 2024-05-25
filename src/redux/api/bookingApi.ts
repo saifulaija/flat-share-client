@@ -6,7 +6,7 @@ import { IMeta } from "@/types";
 
 
 
-export const userApi = baseApi.injectEndpoints({
+export const bookingApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
    
 
@@ -32,13 +32,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.admin],
     }),
-    createUser: build.mutation({
+    createBooking: build.mutation({
       query: (data) => ({
-        url:'/user/register',
+        url:'/booking/create-booking',
         method: "POST",
         data
       }),
-      invalidatesTags: [tagTypes.user],
+      invalidatesTags: [tagTypes.booking],
     }),
     //get single Admin
     getSingleAdmin: build.query({
@@ -57,13 +57,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.admin,tagTypes.user],
     }),
-    getMyProfile: build.query({
+    getMyBooking: build.query({
       query: () => ({
-        url: '/user/profile',
+        url: '/booking/my-booking',
         method: "GET",
        
       }),
-     providesTags:[tagTypes.user]
+     providesTags:[tagTypes.booking]
     }),
   }),
 });
@@ -74,6 +74,7 @@ export const {
   useDeleteAdminMutation,
 useGetSingleAdminQuery,
   useUpdateAdminMutation,
-  useCreateUserMutation,
-  useGetMyProfileQuery
-} =userApi;
+useCreateBookingMutation,
+useGetMyBookingQuery
+
+} =bookingApi;

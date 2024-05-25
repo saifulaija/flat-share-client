@@ -20,12 +20,13 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Separator } from "../ui/separator";
+
 import Link from "next/link";
 import { useState } from "react";
 import { signInUser } from "@/services/actions/signInUser";
 import { storeUserInfo } from "@/services/authServics";
-import { toast } from "sonner";
+import { useToast } from "../ui/use-toast";
+
 
 const formSchema = z.object({
   email: z.string().email({
@@ -37,6 +38,7 @@ const formSchema = z.object({
 });
 
 const SignInForm = () => {
+  const {toast}=useToast()
   const [error, setError] = useState("");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,7 +55,7 @@ const SignInForm = () => {
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        toast.success('user login successfully')
+        toast({title:'Login', description:'User login successfully'})
         // router.push("/dashboard");
       } else {
         setError(res?.message);

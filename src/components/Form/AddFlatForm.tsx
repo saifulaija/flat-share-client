@@ -13,19 +13,14 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
 import { useRouter } from "next/navigation";
 import { toast } from "../ui/use-toast";
 
 import { uploadImage } from "@/utils/imgbb";
 import { useCreateFlatMutation } from "@/redux/api/flatApi";
 import useUserInfo from "@/hooks/useUserInfo";
+import { Card } from "../ui/card";
 
 const formSchema = z.object({
   description: z

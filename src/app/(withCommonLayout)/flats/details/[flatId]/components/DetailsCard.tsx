@@ -44,9 +44,23 @@ import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import { MapPin, DollarSign, Bed, Expand, CreditCard } from 'lucide-react';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import useUserInfo from "@/hooks/useUserInfo";
 
 const DetailsCard = ({ id }: { id: string }) => {
+    const user =useUserInfo();
   const { data, isLoading } = useGetSingleFlatQuery(id);
+
+  const handleFlatShareClick = () => {
+    if (!user?.userId) {
+      const confirmLogin = window.confirm("You need to log in first. Would you like to go to the login page?");
+      if (confirmLogin) {
+        window.location.href = '/login';
+      }
+    } else {
+      // If user is already logged in, proceed to blog page
+      window.location.href = `/flats/flat-request/${data?.id}`;
+    }
+  };
 
   if (isLoading) {
     return <CustomLoader />;
@@ -99,7 +113,7 @@ const DetailsCard = ({ id }: { id: string }) => {
             <p className="text-lg font-medium text-gray-700">Bedrooms: {flat?.bedRooms}</p>
           </div>
           <p className="text-gray-700">{flat?.description}</p>
-          <Button className="mt-4">Share Request</Button>
+          <Button onClick={handleFlatShareClick} className="mt-4">Share Request</Button>
         </div>
       </CardContent>
     </Card>
