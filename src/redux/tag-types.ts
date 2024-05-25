@@ -4,6 +4,7 @@ export enum tagTypes{
     userProfile="userProfile",
     flat="flat",
     booking="booking",
+    image="image"
    
 }
 
@@ -12,7 +13,8 @@ export const tagTypeList=[
     tagTypes.admin,
     tagTypes.userProfile,
     tagTypes.flat,
-    tagTypes.booking
+    tagTypes.booking,
+    tagTypes.image
 
 
 ]

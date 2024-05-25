@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useDeleteFlatMutation } from "@/redux/api/flatApi";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 // import { useToast } from "../ui/use-toast";
 
 
@@ -80,7 +81,7 @@ import { useToast } from "@/components/ui/use-toast";
 
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-          <Button variant="outline">Edit</Button>
+        <Link href={`/dashboard/user/shared-flats/edit/${item.id}`}>  <Button variant="outline">Edit</Button></Link>
 
           <AlertDialog>
             <AlertDialogTrigger className="border px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">

@@ -1,11 +1,8 @@
-import build from "next/dist/build";
-
 import { IMeta } from "@/types";
 
 import { baseApi } from "@/redux/api/baseApi";
 import { tagTypes } from "@/redux/tag-types";
 import { IFlat } from "@/types/flat";
-
 
 const flatsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -22,14 +19,13 @@ const flatsApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.flat],
     }),
 
-    
     getAllFlats: build.query({
       query: (arg: Record<string, any>) => ({
         url: "/flat",
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response:IFlat[], meta: IMeta) => {
+      transformResponse: (response: IFlat[], meta: IMeta) => {
         return {
           flats: response,
           meta,
@@ -43,7 +39,7 @@ const flatsApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response:IFlat[], meta: IMeta) => {
+      transformResponse: (response: IFlat[], meta: IMeta) => {
         return {
           flats: response,
           meta,
@@ -55,18 +51,16 @@ const flatsApi = baseApi.injectEndpoints({
       query: (id) => ({
         url: `/flat/get-single-flat/${id}`,
         method: "GET",
-       
       }),
-   
+
       providesTags: [tagTypes.flat],
     }),
     getSingleFlatForModerator: build.query({
       query: (id) => ({
         url: `/flat/get-single-flat/${id}`,
         method: "GET",
-       
       }),
-   
+
       providesTags: [tagTypes.flat],
     }),
 
@@ -103,4 +97,13 @@ const flatsApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateFlatMutation, useGetAllFlatsQuery,useGetMyFlatsQuery,useGetSingleFlatQuery,useDeleteFlatMutation,useUpdateFlatMutation,useGetSingleFlatForModeratorQuery,useUpdateStatusApproveMutation } = flatsApi;
+export const {
+  useCreateFlatMutation,
+  useGetAllFlatsQuery,
+  useGetMyFlatsQuery,
+  useGetSingleFlatQuery,
+  useDeleteFlatMutation,
+  useUpdateFlatMutation,
+  useGetSingleFlatForModeratorQuery,
+  useUpdateStatusApproveMutation,
+} = flatsApi;
