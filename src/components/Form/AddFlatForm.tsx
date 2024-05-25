@@ -63,7 +63,7 @@ const AddFlatForm = () => {
 
     try {
       const res = await createFlat(values).unwrap();
-      console.log(values);
+     
       if (res?.id) {
         toast({
           title: "Success!",
@@ -230,7 +230,7 @@ const AddFlatForm = () => {
             />
           </div>
           <div className="mt-6">
-            <Button className="w-full" type="submit">
+            <Button disabled={isLoading} className="w-full" type="submit">
               Add Flat Now
             </Button>
           </div>

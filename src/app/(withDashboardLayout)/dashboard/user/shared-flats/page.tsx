@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useGetMyFlatsQuery } from "@/redux/api/flatApi";
@@ -35,10 +34,10 @@ const Flats = () => {
     query["searchTerm"] = searchTerm;
   }
 
-  const { data, isLoading } = useGetMyFlatsQuery({...query});
-  console.log(data)
+  const { data, isLoading } = useGetMyFlatsQuery({ ...query });
+  console.log(data);
 
-  const flats = data?.flats
+  const flats = data?.flats;
 
   const meta = data?.meta;
 
@@ -62,11 +61,11 @@ const Flats = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
-    <div className="w-full flex-center">
+    <div className=" max-w-7xl w-full flex-center">
       <div>
         <CustomHeader title="Your Shared Flats" />
-  
-        <div className="my-10 max-w-lg relative mx-auto">
+
+        <div className="my-5 max-w-lg relative mx-auto">
           <Input
             className="pr-10 pl-4"
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -76,13 +75,27 @@ const Flats = () => {
             <Search className="w-6 h-6 text-gray-400" />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {flats && flats?.data?.length > 0 ? (
             flats?.data?.map((flat:any, index:any) => <MyFlatCard key={index} flat={flat} />)
           ) : (
             <NoData />
           )}
-        </div>
+        </div> */}
+
+        <section className="w-full">
+          <div className="space-y-4">
+            {flats?.data &&
+            Array.isArray(flats?.data) &&
+            flats?.data?.length > 0 ? (
+              flats?.data?.map((item) => (
+                <MyFlatCard key={item.id} item={item} />
+              ))
+            ) : (
+              <NoData />
+            )}
+          </div>
+        </section>
         <Pagination>
           <PaginationContent>
             <PaginationItem>

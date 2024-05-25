@@ -3,7 +3,7 @@ import { Clock, DollarSign, LocateIcon } from "lucide-react";
 import Image from "next/image";
 import Badge from "./Badge";
 
-const RequestFlatCard = ({ item }) => {
+const RequestFlatCard = ({ item }:any) => {
   return (
     <article className="flex justify-between items-center gap-3 border rounded-lg p-5 hover:bg-muted/60 ">
       <div className="text-muted-foreground">

@@ -1,74 +1,110 @@
-import React from 'react';
+'use client'
+
+import { formateDate, formateMoney } from "@/utils/common";
+import { Clock, DollarSign, LocateIcon } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useDeleteFlatMutation } from "@/redux/api/flatApi";
+import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "../ui/use-toast";
 
-import Image from "next/image";
-import { DollarSign, MapPin } from 'lucide-react';
-import Link from 'next/link';
-import useUserInfo from '@/hooks/useUserInfo';
 
+ const MyFlatCard = ({ item }: any) => {
+  const {toast}=useToast()
+  const [deleteFlat,{isLoading}]=useDeleteFlatMutation()
+  const handleDelete = async (id:string) => {
+   try {
+    const res=await deleteFlat(id).unwrap();
+    if(res?.id){
+      toast({
+        title:'Flat Delete',
+        description:'Flat deleted successfully'
+      })
 
-
-const  MyFlatCard = ({ flat }:any ) => {
-  const user =useUserInfo();
-  // const user = getUserInfo()
-  console.log(user)
-  // Function to truncate the description to show only 20 words
-  const truncateDescription = (description:string) => {
-    const words = description.split(' ');
-    if (words.length > 20) {
-      return words.slice(0, 10).join(' ') + '...';
     }
-    return description;
+   } catch (error) {
+    
+   }
+   
   };
 
-
-
   return (
-    <Card className='shadow-xl w-[350px]  h-auto overflow-hidden group'>
-      <CardHeader>
-        <Image
-        className='group-hover:scale-90   group-hover:duration-300 group-hover:transition'
-          src={flat?.image[0]?.url}
-          width={200}
-          height={150}
-          alt="image"
-          layout="responsive"
-        />
-        <div className="flex-between">
-        <div className="flex items-center">
-              <MapPin className="w-4 h-4 mr-1 text-gray-600" />
-              <p className="text-gray-600">{flat.location}</p>
-            </div>
-            {/* Lucide Icon for Price */}
-            <div className="flex items-center">
-              <DollarSign className="w-4 h-4 mr-1 text-gray-600" />
-              <p className="text-gray-600">{flat.rentAmount}</p>
-            </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        {/* Display truncated description */}
-        <p>{truncateDescription(flat?.description)}</p>
-        <p>Rooms:{flat?.bedRooms}</p>
-      </CardContent>
-      <CardFooter className='flex-between'>
-    
-        
-         
-          
-         <Link href={`/flats/details/${flat?.id}`}>  <Button>Details</Button></Link>
-         <Button>Delete</Button>
-        
-         
-    
-      </CardFooter>
-    </Card>
+    <article className="flex justify-between items-center gap-3 border rounded-lg p-5 hover:bg-muted/60 ">
+      <Image
+        src={item?.image[0].url || "logo"}
+        alt="image"
+        width={100}
+        height={80}
+        className="self-center rounded-md"
+      />
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          <LocateIcon size={16} className="shrink-0" />
+          {item.location}
+        </p>
+      </div>
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          {formateMoney(item.rentAmount)}
+        </p>
+      </div>
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          <p>Advance: </p>
+          {formateMoney(item.rentAmount)}
+        </p>
+      </div>
+
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          <Clock size={16} className="shrink-0" />
+          {formateDate(item?.createdAt)}
+        </p>
+      </div>
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          {formateDate(item?.createdAt)}
+        </p>
+      </div>
+
+      <div className="text-muted-foreground">
+        <p className="flex items-center gap-1.5">
+          <Button variant="outline">Edit</Button>
+
+          <AlertDialog>
+            <AlertDialogTrigger className="border px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
+              Delete
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your flat and remove your data from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={() => handleDelete(item.id)}>
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </p>
+      </div>
+    </article>
   );
 };
 
