@@ -36,8 +36,9 @@ const Flats = () => {
   }
 
   const { data, isLoading } = useGetMyFlatsQuery({...query});
+  console.log(data)
 
-  const flats = data?.flats?.data
+  const flats = data?.flats
 
   const meta = data?.meta;
 
@@ -57,7 +58,7 @@ const Flats = () => {
     }
   };
 
-  const pageCount = meta?.total ? Math.ceil(meta.total / limit) : 0;
+  const pageCount = meta?.total ? Math.ceil(meta?.total / limit) : 0;
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
@@ -76,8 +77,8 @@ const Flats = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {flats && flats.length > 0 ? (
-            flats.map((flat:any, index:any) => <MyFlatCard key={index} flat={flat} />)
+          {flats && flats?.data?.length > 0 ? (
+            flats?.data?.map((flat:any, index:any) => <MyFlatCard key={index} flat={flat} />)
           ) : (
             <NoData />
           )}

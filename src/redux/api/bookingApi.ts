@@ -59,7 +59,7 @@ export const bookingApi = baseApi.injectEndpoints({
     }),
     getMyBooking: build.query({
       query: () => ({
-        url: '/booking/my-booking',
+        url: '/booking/my-bookings',
         method: "GET",
        
       }),
