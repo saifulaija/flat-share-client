@@ -33,3 +33,31 @@ export type IGenericErrorMessage = {
   message:string
 };
 
+
+
+// types.ts
+
+export interface FlatData {
+  id: string;
+  location: string;
+  space: string;
+  rentAmount: string;
+  advanceAmount: string;
+  description: string;
+  amenities: string;
+  bedRooms: string;
+}
+
+export interface FlatUpdateFormProps {
+  data: FlatData | null;
+  isLoading: boolean;
+  onSuccess: () => void;
+  onCancel: () => void;
+}
+
+export interface UpdateFlatDialogProps {
+  data: FlatData | null;
+  isLoading: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}

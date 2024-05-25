@@ -80,7 +80,7 @@ const flatsApi = baseApi.injectEndpoints({
     // }),
     updateFlat: build.mutation({
       query: (data) => ({
-        url: `/flat/update-flat/${data.id}`,
+        url: `/flat/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),
