@@ -23,6 +23,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { useCreateImageMutation } from "@/redux/api/imageApi";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import FlatUpdateForm from "@/components/Form/FlatUpdateForm";
 
 type TProps = {
   params: {
@@ -165,7 +167,31 @@ const UpdateFlatPage = ({ params }: TProps) => {
                 <p>{data?.description}</p>
               </p>
             </div>
+           <div className="my-10">
+                <AlertDialog>
+                <AlertDialogTrigger className="border w-full px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                  Edit Flat
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                     <FlatUpdateForm/>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => handleDelete(item.id)}>
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+           </div>
           </div>
+
+
+
         </div>
       </div>
     </article>
