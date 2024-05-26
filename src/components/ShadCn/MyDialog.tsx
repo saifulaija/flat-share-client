@@ -9,7 +9,7 @@ interface MyDialogProps {
 const MyDialog: React.FC<MyDialogProps> = ({ children, triggerButton}) => {
   return (
     <Dialog>
-      <DialogTrigger>{triggerButton}</DialogTrigger>
+      <DialogTrigger className="w-full max-w-md">{triggerButton}</DialogTrigger>
       <DialogContent>{children}</DialogContent>
     </Dialog>
   );
