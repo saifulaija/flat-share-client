@@ -3,7 +3,7 @@
 import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import Image from "next/image";
 import React, { useState } from "react";
-import { LocateIcon, Clock } from "lucide-react";
+import { LocateIcon, Clock, Loader2 } from "lucide-react";
 
 import { formateDate, formateMoney } from "@/utils/common";
 import { z } from "zod";
@@ -138,9 +138,10 @@ const UpdateFlatPage = ({ params }: TProps) => {
                       )}
                     />
                   </div>
-                  <Button className="w-[100%] mt-2" type="submit">
-                    {update ? "Uploading.............." : "Upload Image More"}
-                  </Button>
+                  <Button type="submit" disabled={update} className="w-full">
+            Update
+            {update && <Loader2 className="ml-6 h-4 w-4 animate-spin" />}
+          </Button>
                 </div>
               </form>
             </Form>
