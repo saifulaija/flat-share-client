@@ -3,7 +3,7 @@
 import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import Image from "next/image";
 import React, { useState } from "react";
-import { MapPin, Bed, DollarSign, LocateIcon, Clock } from "lucide-react";
+import { LocateIcon, Clock } from "lucide-react";
 
 import { formateDate, formateMoney } from "@/utils/common";
 import { z } from "zod";
@@ -23,19 +23,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { useCreateImageMutation } from "@/redux/api/imageApi";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import FlatUpdateForm from "@/components/Form/FlatUpdateForm";
-import UpdateFlatDialog from "../../components/UpdateFlatDialog ";
+import MyDialog from "@/components/ShadCn/MyDialog";
 
 type TProps = {
   params: {
@@ -48,7 +37,7 @@ const formSchema = z.object({
 });
 
 const UpdateFlatPage = ({ params }: TProps) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const { toast } = useToast();
   const id = params.flatId;
   const form = useForm<z.infer<typeof formSchema>>({
@@ -99,13 +88,6 @@ const UpdateFlatPage = ({ params }: TProps) => {
     }
   };
 
-  const handleConfirm = () => {
-    setIsDialogOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsDialogOpen(false);
-  };
 
   return (
     <article className="flex flex-col md:flex-row justify-between items-start gap-5 border rounded-lg p-5 hover:bg-muted/60 ">
@@ -188,30 +170,10 @@ const UpdateFlatPage = ({ params }: TProps) => {
               </p>
             </div>
             <div className="my-10">
-              {/* <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <AlertDialogTrigger className="border w-full px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
-                Edit Flat
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    <FlatUpdateForm data={data} isLoading={isLoading} onSuccess={() => setIsDialogOpen(false)} />
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction form="flat-update-form">Continue</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog> */}
-
-              <UpdateFlatDialog
-                data={data}
-                isLoading={false}
-                onConfirm={handleConfirm}
-                onCancel={handleCancel}
-              />
+              <MyDialog  triggerButton={<Button >Update Flat</Button>}  
+             >
+                <FlatUpdateForm data={data}  />
+              </MyDialog>
             </div>
           </div>
         </div>
@@ -221,88 +183,3 @@ const UpdateFlatPage = ({ params }: TProps) => {
 };
 
 export default UpdateFlatPage;
-
-// 'use client'
-
-// import { useGetSingleFlatQuery } from '@/redux/api/flatApi'
-// import Image from 'next/image'
-// import React, { useState } from 'react'
-// import { MapPin, Bed, DollarSign } from 'lucide-react'
-// import {
-//   AlertDialog,
-//   AlertDialogTrigger,
-//   AlertDialogContent,
-//   AlertDialogHeader,
-//   AlertDialogTitle,
-//   AlertDialogDescription,
-//   AlertDialogFooter,
-//   AlertDialogCancel,
-//   AlertDialogAction,
-// } from "@/components/ui/alert-dialog"
-// import FlatUpdateForm from '@/components/Form/FlatUpdateForm'
-// // Adjust the import path according to your project structure
-
-// type TProps = {
-//   params: {
-//     flatId: string
-//   }
-// }
-
-// const UpdateFlatPage = ({ params }: TProps) => {
-//   const id = params.flatId
-//   const { data, isLoading, error } = useGetSingleFlatQuery(id)
-//   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
-//   if (isLoading) {
-//     return <div>Loading...</div>
-//   }
-
-//   if (error) {
-//     return <div>Error loading data.</div>
-//   }
-
-//   return (
-//     <article className="flex flex-col md:flex-row justify-between items-start gap-5 border rounded-lg p-5 hover:bg-muted/60 dark:bg-gray-800">
-//       {data && (
-//         <>
-//           <div className="w-full md:w-1/4 flex-shrink-0">
-//             {data.image && data.image.length > 0 && (
-//               <Image src={data.image[0].url} alt='Flat image' width={300} height={300} className="rounded-lg" />
-//             )}
-//           </div>
-
-//           <div className="w-full md:w-3/4 flex flex-col gap-3">
-//             <h2 className="text-xl font-bold flex items-center"><MapPin className="inline-block mr-2" />{data.location}</h2>
-//             <p className="text-gray-700 dark:text-gray-300">Description: {data.description}</p>
-//             <p className="text-gray-700 dark:text-gray-300 flex items-center"><Bed className="inline-block mr-2" />Bedrooms: {data.bedRooms}</p>
-//             <p className="text-gray-700 dark:text-gray-300">Space: {data.space} sqft</p>
-//             <p className="text-gray-700 dark:text-gray-300">Amenities: {data.amenities}</p>
-//             <p className="text-gray-700 dark:text-gray-300 flex items-center"><DollarSign className="inline-block mr-2" />Rent Amount: ${data.rentAmount}</p>
-//             <p className="text-gray-700 dark:text-gray-300 flex items-center"><DollarSign className="inline-block mr-2" />Advance Amount: ${data.advanceAmount}</p>
-//             <p className="text-gray-500 dark:text-gray-400">Posted on: {new Date(data.createdAt).toLocaleDateString()}</p>
-
-//             <AlertDialog isOpen={isDialogOpen} onOpenChange={setIsDialogOpen}>
-//               <AlertDialogTrigger className="border w-full px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
-//                 Edit Flat
-//               </AlertDialogTrigger>
-//               <AlertDialogContent>
-//                 <AlertDialogHeader>
-//                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-//                   <AlertDialogDescription>
-//                     <FlatUpdateForm data={data} isLoading={isLoading} onSuccess={() => setIsDialogOpen(false)} />
-//                   </AlertDialogDescription>
-//                 </AlertDialogHeader>
-//                 <AlertDialogFooter>
-//                   <AlertDialogCancel onClick={() => setIsDialogOpen(false)}>Cancel</AlertDialogCancel>
-//                   <AlertDialogAction type="submit" form="flat-update-form">Continue</AlertDialogAction>
-//                 </AlertDialogFooter>
-//               </AlertDialogContent>
-//             </AlertDialog>
-//           </div>
-//         </>
-//       )}
-//     </article>
-//   )
-// }
-
-// export default UpdateFlatPage

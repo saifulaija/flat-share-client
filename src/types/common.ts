@@ -50,9 +50,7 @@ export interface FlatData {
 
 export interface FlatUpdateFormProps {
   data: FlatData | null;
-  isLoading: boolean;
-  onSuccess: () => void;
-  onCancel: () => void;
+
 }
 
 export interface UpdateFlatDialogProps {
