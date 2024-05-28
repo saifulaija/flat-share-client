@@ -21,15 +21,7 @@ import SignUpForm from "@/components/Form/SignUpForm";
             <div className="w-full md:w-3/4">
               <SignUpForm />
             </div>
-            <div className="hidden md:block md:w-1/4">
-              <Image
-                src={assets.svg.login}
-                width={400}
-                height={400}
-                alt="Login Illustration"
-                className="rounded-lg"
-              />
-            </div>
+           
           </div>
         </div>
       </div>

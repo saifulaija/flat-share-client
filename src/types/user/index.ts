@@ -13,3 +13,21 @@ export interface IUser {
   createdAt: string;
   updatedAt: string;
 }
+
+
+export interface IUserData {
+  id: string;
+  userName: string;
+  email: string;
+  role: "ADMIN" | "USER";
+  status: "ACTIVE" | "DEACTIVE";
+  profilePhoto?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type TUserData = {
+  users: {
+    data: IUserData[];
+  };
+};

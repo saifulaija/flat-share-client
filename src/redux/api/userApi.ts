@@ -1,6 +1,7 @@
 import { baseApi } from "@/redux/api/baseApi";
 import { tagTypes } from "@/redux/tag-types";
 import { IMeta } from "@/types";
+import {  TUserData } from "@/types/user";
 // import { TAdmin } from "@/types/admin";
 
 
@@ -10,28 +11,39 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
    
 
-    // getAllAdmins: build.query({
+    // getAllUsers: build.query({
     //   query: (arg: Record<string, any>) => ({
-    //     url: "/admin",
+    //     url: "/user",
     //     method: "GET",
     //     params: arg,
     //   }),
-    //   transformResponse: (response: TAdmin[], meta: IMeta) => {
+    //   transformResponse: (response: TUserData[], meta: IMeta) => {
     //     return {
-    //       admins: response,
+    //       users: response,
     //       meta,
     //     };
     //   },
-    //   providesTags: [tagTypes.admin],
+    //   providesTags: [tagTypes.user],
     // }),
 
-    deleteAdmin: build.mutation({
-      query: (id) => ({
-        url: `/admin/soft/${id}`,
-        method: "DELETE",
+
+
+    getAllUsers: build.query({
+      query: (arg: Record<string, any>) => ({
+        url: "/user",
+        method: "GET",
+        params: arg,
       }),
-      invalidatesTags: [tagTypes.admin],
+      transformResponse: (response: TUserData[], meta: IMeta) => {
+        return {
+          users: response,
+          meta,
+        };
+      },
+      providesTags: [tagTypes.user],
     }),
+
+
     createUser: build.mutation({
       query: (data) => ({
         url:'/user/register',
@@ -71,9 +83,10 @@ export const userApi = baseApi.injectEndpoints({
 export const {
 
 //   useGetAllAdminsQuery,
-  useDeleteAdminMutation,
+
 useGetSingleAdminQuery,
   useUpdateAdminMutation,
   useCreateUserMutation,
-  useGetMyProfileQuery
+  useGetMyProfileQuery,
+  useGetAllUsersQuery
 } =userApi;
