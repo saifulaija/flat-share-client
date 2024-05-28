@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
@@ -34,9 +31,9 @@ const Flats = () => {
     query["searchTerm"] = searchTerm;
   }
 
-  const { data, isLoading } = useGetAllFlatsQuery({...query});
+  const { data, isLoading } = useGetAllFlatsQuery({ ...query });
 
-  const flats = data?.flats?.data
+  const flats = data?.flats?.data;
 
   const meta = data?.meta;
 
@@ -63,7 +60,7 @@ const Flats = () => {
     <div className="w-full">
       <CustomHeader title="Find Flats" />
 
-      <div className="my-10 max-w-lg relative mx-auto">
+      {/* <div className="my-10 max-w-lg relative mx-auto">
         <Input
           className="pr-10 pl-4"
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -72,10 +69,24 @@ const Flats = () => {
         <div className="absolute inset-y-0 right-0 flex items-center px-2">
           <Search className="w-6 h-6 text-gray-400" />
         </div>
-      </div>
+      </div> */}
+
+     <div className="my-5 flex justify-center items-center">
+        <div className="relative w-full">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by location, rent price..."
+            className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+          />
+        </div>
+     </div>
       <div className="flex gap-3 justify-center items-center flex-wrap">
-        {flats && flats.length > 0 ? (
-          flats.map((flat:any, index:any) => <FlatCard key={index} flat={flat} />)
+        {flats && flats?.length > 0 ? (
+          flats?.map((flat: any, index: any) => (
+            <FlatCard key={index} flat={flat} />
+          ))
         ) : (
           <NoData />
         )}

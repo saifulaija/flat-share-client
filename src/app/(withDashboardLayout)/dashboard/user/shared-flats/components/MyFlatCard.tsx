@@ -75,9 +75,13 @@ import Link from "next/link";
       </div>
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-          {formateDate(item?.createdAt)}
+         <span>
+          Request For Flat:
+         </span>
+          {item?.Request_Flat?.length}
         </p>
       </div>
+     
 
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">

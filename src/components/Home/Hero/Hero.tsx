@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "../../ui/button";
 import { Announcement } from "./Announcement";
 import useUserInfo from "@/hooks/useUserInfo";
+import { Package2 } from "lucide-react";
 
 export const Hero = () => {
   const user =useUserInfo();
@@ -29,8 +30,16 @@ export const Hero = () => {
   return (
     <div className=" relative container">
       <PageHeader>
-        <Announcement />
-        <PageHeaderHeading className="hidden md:block">
+      <div className="flex">
+              <span
+                
+                className="flex items-center gap-2 font-semibold text-foreground"
+              >
+                <Package2 className="h-10 w-10" />
+                <span className="text-xl md:text-2xl">ShareNest</span>
+              </span>
+            </div>
+        <PageHeaderHeading className="hidden md:block tracking-wide">
           Find Your Perfect Flat Share
         </PageHeaderHeading>
         <PageHeaderHeading className="md:hidden">
