@@ -61,13 +61,13 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.admin],
     }),
     // update a Admin
-    updateAdmin: build.mutation({
+    updateUser: build.mutation({
       query: (data) => ({
-        url: `/admin/${data.id}`,
+        url: `/user/update-user/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.admin,tagTypes.user],
+      invalidatesTags: [tagTypes.user,tagTypes.userProfile],
     }),
     getMyProfile: build.query({
       query: () => ({
@@ -85,7 +85,7 @@ export const {
 //   useGetAllAdminsQuery,
 
 useGetSingleAdminQuery,
-  useUpdateAdminMutation,
+  useUpdateUserMutation,
   useCreateUserMutation,
   useGetMyProfileQuery,
   useGetAllUsersQuery
