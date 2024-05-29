@@ -1,8 +1,31 @@
+'use client'
+
+
 import React from 'react'
 
+import { columns } from './components/column';
+import CustomLoader from '@/components/shared/CustomLoader/CustomLoader';
+import { useGetAllFlatsQuery } from '@/redux/api/flatApi';
+import { FlatDataTable } from './components/flatDataTable';
+
 const FlatManagementPage = () => {
+  const {data,isLoading}=useGetAllFlatsQuery({});
+
+
+  console.log(data?.flats.data)
+  
   return (
-    <div>FlatManagementPage</div>
+   <section className='py-5'>
+    <div>
+      <h3 className='text xl md:text-3xl font-bold mb-4'>All Flats</h3>
+     {
+      isLoading? <CustomLoader/>:(
+        <FlatDataTable data={data?.flats?.data} columns={columns}/>
+      )
+     }
+    </div>
+
+   </section>
   )
 }
 

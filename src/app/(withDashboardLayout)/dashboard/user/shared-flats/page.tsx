@@ -75,13 +75,7 @@ const Flats = () => {
             <Search className="w-6 h-6 text-gray-400" />
           </div>
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {flats && flats?.data?.length > 0 ? (
-            flats?.data?.map((flat:any, index:any) => <MyFlatCard key={index} flat={flat} />)
-          ) : (
-            <NoData />
-          )}
-        </div> */}
+     
 
         <section className="w-full">
           <div className="space-y-4">

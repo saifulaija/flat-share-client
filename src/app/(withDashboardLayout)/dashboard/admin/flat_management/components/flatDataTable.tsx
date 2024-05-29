@@ -16,14 +16,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DataTablePagination } from "./data-table-pagination";
+import { DataTablePagination } from "../../user_management/components/data-table-pagination";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function UserDataTable<TData, TValue>({
+export function FlatDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {

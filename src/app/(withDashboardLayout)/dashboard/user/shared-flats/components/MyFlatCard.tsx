@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { formateDate, formateMoney } from "@/utils/common";
 import { Clock, DollarSign, LocateIcon } from "lucide-react";
@@ -18,26 +18,22 @@ import {
 import { useDeleteFlatMutation } from "@/redux/api/flatApi";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import MyAlertDialog from "@/components/ShadCn/MyAlertDialog";
 // import { useToast } from "../ui/use-toast";
 
-
- const MyFlatCard = ({ item }: any) => {
-  const {toast}=useToast()
-  const [deleteFlat,{isLoading}]=useDeleteFlatMutation()
-  const handleDelete = async (id:string) => {
-   try {
-    const res=await deleteFlat(id).unwrap();
-    if(res?.id){
-      toast({
-        title:'Flat Delete',
-        description:'Flat deleted successfully'
-      })
-
-    }
-   } catch (error) {
-    
-   }
-   
+const MyFlatCard = ({ item }: any) => {
+  const { toast } = useToast();
+  const [deleteFlat, { isLoading }] = useDeleteFlatMutation();
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await deleteFlat(id).unwrap();
+      if (res?.id) {
+        toast({
+          title: "Flat Delete",
+          description: "Flat deleted successfully",
+        });
+      }
+    } catch (error) {}
   };
 
   return (
@@ -75,38 +71,23 @@ import Link from "next/link";
       </div>
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-         <span>
-          Request For Flat:
-         </span>
+          <span>Request For Flat:</span>
           {item?.Request_Flat?.length}
         </p>
       </div>
-     
 
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-        <Link href={`/dashboard/user/shared-flats/edit/${item.id}`}>  <Button variant="outline">Edit</Button></Link>
+          <Link href={`/dashboard/user/shared-flats/edit/${item.id}`}>
+           
+            <Button variant="outline">Edit</Button>
+          </Link>
 
-          <AlertDialog>
-            <AlertDialogTrigger className="border px-4 py-2 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground">
-              Delete
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your flat and remove your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => handleDelete(item.id)}>
-                  Continue
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <MyAlertDialog
+            title="Confirm Deletion"
+            description="Are you sure you want to delete this item? This action cannot be undone."
+            onConfirm={() => handleDelete(item.id)}
+          />
         </p>
       </div>
     </article>
