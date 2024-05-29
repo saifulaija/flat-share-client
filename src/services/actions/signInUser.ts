@@ -17,7 +17,11 @@ export const signInUser = async (data: FieldValues) => {
       credentials: "include",
     }
   );
+
   const userInfo = await res.json();
+  if (!res.ok) {
+    throw new Error(userInfo.message || "An unexpected error occurred.");
+  }
 
   const userData = jwtDecode(userInfo?.data?.accessToken) as any;
   const needPasswordChanged = userInfo?.data?.passwordChangeRequired;
