@@ -42,7 +42,7 @@ export default function UsrDashboardPage () {
   console.log(chartData)
 
   return (
-    <div className="md:flex  gap-2">
+    <div className="md:flex  gap-2 p-10">
       <div className="w-full md:max-w-[40%] md:w-full border p-5">
         <div className="h-[300px]  w-auto">
           <PieChart data={chartData} />
