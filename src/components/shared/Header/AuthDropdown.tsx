@@ -15,13 +15,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
-  const{toast}=useToast()
+  const { toast } = useToast();
   const user = useUserInfo();
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
-    toast({title:'Logout',description:'user logout successfully'})
+    toast({ title: "Logout", description: "user logout successfully" });
   };
 
   return (
@@ -34,9 +34,6 @@ const AuthDropdown = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
 
