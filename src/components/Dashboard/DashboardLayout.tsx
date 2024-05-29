@@ -115,7 +115,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </div>
           <AuthDropdown />
         </header>
-        <main className="flex flex-1 flex-col gap-4  lg:gap-6 p-16">
+        <main className="flex flex-1 flex-col gap-4  lg:gap-6 py-16 px-5">
           {children}
         </main>
       </div>

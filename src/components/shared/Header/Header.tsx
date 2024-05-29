@@ -10,8 +10,10 @@ import AuthDropdown from "./AuthDropdown";
 import { ModeToggle } from "./ModeToggle";
 import useUserInfo from "@/hooks/useUserInfo";
 
+
 const Header = () => {
   const pathname = usePathname();
+
   const user = useUserInfo();
   const [scrolled, setScrolled] = useState(false);
 
