@@ -123,7 +123,7 @@ const Footer = () => (
       {/* Copyright Information */}
      
     </div>
-    <div className="text-center bg-muted/95 py-4 mt-8">
+    <div className="text-center bg-muted/95 py-4 mt-2">
         <p className="text-lg text-foreground">&copy; {new Date().getFullYear()} ShareNest. All rights reserved.</p>
       </div>
   </footer>

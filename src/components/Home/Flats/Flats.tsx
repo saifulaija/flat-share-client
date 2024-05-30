@@ -60,16 +60,7 @@ const Flats = () => {
     <div className="w-full">
       <CustomHeader title="Find Flats" />
 
-      {/* <div className="my-10 max-w-lg relative mx-auto">
-        <Input
-          className="pr-10 pl-4"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search your desired flats..."
-        />
-        <div className="absolute inset-y-0 right-0 flex items-center px-2">
-          <Search className="w-6 h-6 text-gray-400" />
-        </div>
-      </div> */}
+    
 
      <div className="my-5 flex justify-center items-center">
         <div className="relative w-full">
