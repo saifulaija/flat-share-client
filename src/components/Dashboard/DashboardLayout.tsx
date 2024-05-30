@@ -25,10 +25,12 @@ import { UserRole } from "@/types";
 import { drawerItems } from "./SidebarItems";
 import SidebarLink from "./SidebarLink";
 import AuthDropdown from "../shared/Header/AuthDropdown";
+import { useGetSingleUserQuery } from "@/redux/api/profileApi";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const {data,isLoading}=useGetSingleUserQuery()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,9 +70,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
           </div>
-          <div className="mt-auto p-4">
-            <p>Settings</p>
-          </div>
+          
         </div>
       </div>
       <div className="flex flex-col">
@@ -96,13 +96,23 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   <SidebarLink key={index} item={item} />
                 ))}
               </nav>
-              <div className="mt-auto p-4">
-                <p>Settings</p>
-              </div>
+              
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
-            <form>
+
+          <div className="text-muted-foreground">
+  <p className="text-lg font-semibold">
+    Welcome{" "}
+    <span className="italic text-primary">
+      {data?.userName ? `Md: ${data.userName}` : "Guest"}
+    </span>
+  </p>
+</div>
+
+
+            {/* <p>Welcome <span className="italic text-primary">Md: {data?.userName}</span></p> */}
+            {/* <form>
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -111,7 +121,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
                 />
               </div>
-            </form>
+            </form> */}
           </div>
           <AuthDropdown />
         </header>

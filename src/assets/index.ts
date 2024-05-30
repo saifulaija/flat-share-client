@@ -6,7 +6,8 @@ const assets = {
     facebook:require("./images/facebook.png"),
     instagram:require("./images/instragram.png"),
     linkedin:require("./images/linkdin.png"),
-  }
+  },
+ 
 };
 
 export default assets;

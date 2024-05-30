@@ -25,12 +25,12 @@ const flatsApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: IFlat[], meta: IMeta) => {
-        return {
-          flats: response,
-          meta,
-        };
-      },
+      // transformResponse: (response: IFlat[], meta: IMeta) => {
+      //   return {
+      //     flats: response,
+      //     meta,
+      //   };
+      // },
       providesTags: [tagTypes.flat],
     }),
     getMyFlats: build.query({

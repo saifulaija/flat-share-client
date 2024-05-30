@@ -11,6 +11,7 @@ import { Announcement } from "./Announcement";
 import useUserInfo from "@/hooks/useUserInfo";
 import { Package2 } from "lucide-react";
 
+
 export const Hero = () => {
   const user =useUserInfo();
 
@@ -59,6 +60,10 @@ export const Hero = () => {
           </Button>
         </PageActions>
       </PageHeader>
+      <video className="rounded-xl md:-mt-14" autoPlay muted loop>
+        <source src="/content/hero.mp4" type="video/mp4"/>
+
+      </video>
     </div>
   );
 };

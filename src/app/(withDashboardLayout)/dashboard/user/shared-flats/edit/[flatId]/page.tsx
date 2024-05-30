@@ -91,7 +91,7 @@ const UpdateFlatPage = ({ params }: TProps) => {
 
   return (
     <article className="flex flex-col md:flex-row justify-between items-start gap-5 border rounded-lg p-5 hover:bg-muted/60 ">
-      <div className="p-6">
+      <div>
         <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 w-full lg:sticky top-0">
             <Image

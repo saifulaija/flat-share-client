@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/pagination";
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
-import FlatCard from "@/components/Home/Flats/FlatCard";
+
 import MyFlatCard from "./components/MyFlatCard";
 
 const Flats = () => {
@@ -79,7 +79,7 @@ const Flats = () => {
 
         <section className="w-full">
           <div className="space-y-4">
-            {flats?.data &&
+            {  flats?.data &&
             Array.isArray(flats?.data) &&
             flats?.data?.length > 0 ? (
               flats?.data?.map((item) => (

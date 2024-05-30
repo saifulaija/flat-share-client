@@ -4,17 +4,7 @@ import { formateDate, formateMoney } from "@/utils/common";
 import { Clock, DollarSign, LocateIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
 import { useDeleteFlatMutation } from "@/redux/api/flatApi";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
@@ -37,7 +27,7 @@ const MyFlatCard = ({ item }: any) => {
   };
 
   return (
-    <article className="flex justify-between items-center gap-3 border rounded-lg p-5 hover:bg-muted/60 ">
+    <article className="flex flex-col md:flex-row justify-between  scroll-mx-1 items-center gap-3 border rounded-lg p-5 hover:bg-muted/60">
       <Image
         src={item?.image[0].url || "logo"}
         alt="image"
@@ -95,3 +85,5 @@ const MyFlatCard = ({ item }: any) => {
 };
 
 export default MyFlatCard;
+
+

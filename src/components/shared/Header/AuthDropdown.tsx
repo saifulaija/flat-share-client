@@ -1,59 +1,5 @@
-// import { Button } from "@/components/ui/button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuLabel,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-// import { useToast } from "@/components/ui/use-toast";
-// import useUserInfo from "@/hooks/useUserInfo";
-// import { logoutUser } from "@/services/actions/logoutUser";
-// import { CircleUser } from "lucide-react";
-// import Link from "next/link";
-// import { useRouter } from "next/navigation";
-
-// const AuthDropdown = () => {
-//   const { toast } = useToast();
-//   const user = useUserInfo();
-
-//   const router = useRouter();
-//   const handleLogout = () => {
-//     logoutUser(router);
-//     toast({ title: "Logout", description: "user logout successfully" });
-//   };
-
-//   return (
-//     <div>
-//       <DropdownMenu>
-//         <DropdownMenuTrigger asChild>
-//           <Button variant="secondary" size="icon" className="rounded-full">
-//             <CircleUser className="h-5 w-5" />
-//             <span className="sr-only">Toggle user menu</span>
-//           </Button>
-//         </DropdownMenuTrigger>
-//         <DropdownMenuContent align="end">
-//           <DropdownMenuItem>Support</DropdownMenuItem>
-//           <DropdownMenuSeparator />
-
-//           {user && user?.userId ? (
-//             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
-//           ) : (
-//             <Link href="/login">
-//               <DropdownMenuItem>Login</DropdownMenuItem>
-//             </Link>
-//           )}
-//         </DropdownMenuContent>
-//       </DropdownMenu>
-//     </div>
-//   );
-// };
-
-// export default AuthDropdown;
-
-
-'use client'
+"use client";
+import { MyAvatar } from "@/components/ShadCn/MyAvater";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -64,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 import useUserInfo from "@/hooks/useUserInfo";
+import { useGetSingleUserQuery } from "@/redux/api/profileApi";
 import { logoutUser } from "@/services/actions/logoutUser";
 import { CircleUser } from "lucide-react";
 import Link from "next/link";
@@ -72,6 +19,8 @@ import { useRouter } from "next/navigation";
 const AuthDropdown = () => {
   const { toast } = useToast();
   const user = useUserInfo();
+
+  const { data } = useGetSingleUserQuery();
 
   const router = useRouter();
   const handleLogout = () => {
@@ -85,7 +34,12 @@ const AuthDropdown = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">
-              <CircleUser className="h-5 w-5" />
+              {data?.id ? (
+                <MyAvatar url={data?.profilePhoto} alt="image" />
+              ) : (
+                <CircleUser className="h-5 w-5" />
+              )}
+
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>

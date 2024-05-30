@@ -30,7 +30,7 @@ const Header = () => {
   const menuItems = [
     { label: "Home", path: "/", show: true },
     { label: "About Us", path: "/about-us", show: true },
-    { label: "Dashboard", path: `/dashboard/${user?.role}`, show: !!user },
+    { label: "Dashboard", path: `/dashboard/${user?.role}`, show:  !!user?.role },
   ];
 
   return (
