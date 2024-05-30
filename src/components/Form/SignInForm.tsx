@@ -260,6 +260,7 @@ const SignInForm = () => {
               </FormItem>
             )}
           />
+          <Link href='/forgot-password'><p className="text-sm font-semibold mt-4 hover:underline text-end">Forgot password ?</p></Link>
           <Button type="submit" disabled={loading} className="w-full">
             SignIn
             {loading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
