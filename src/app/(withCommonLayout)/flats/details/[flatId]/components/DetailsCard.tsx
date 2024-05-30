@@ -4,7 +4,6 @@
 // import { Card } from "@/components/ui/card";
 // import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 
-
 // const DetailsCard = ({id}:{id:string}) => {
 //     console.log(id)
 //     const {data,isLoading}=useGetSingleFlatQuery(id);
@@ -32,29 +31,34 @@
 
 // export default DetailsCard
 
-
-
-
-
-'use client'
+"use client";
 
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
-import { MapPin, DollarSign, Bed, Expand, CreditCard } from 'lucide-react';
+import { MapPin, DollarSign, Bed, Expand, CreditCard } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import useUserInfo from "@/hooks/useUserInfo";
+import ImageSlider from "./ImageSlider";
+import { IImage } from "@/types/image";
 
 const DetailsCard = ({ id }: { id: string }) => {
-    const user =useUserInfo();
+  const user = useUserInfo();
   const { data, isLoading } = useGetSingleFlatQuery(id);
 
   const handleFlatShareClick = () => {
     if (!user?.userId) {
-      const confirmLogin = window.confirm("You need to log in first. Would you like to go to the login page?");
+      const confirmLogin = window.confirm(
+        "You need to log in first. Would you like to go to the login page?"
+      );
       if (confirmLogin) {
-        window.location.href = '/login';
+        window.location.href = "/login";
       }
     } else {
       // If user is already logged in, proceed to blog page
@@ -68,55 +72,53 @@ const DetailsCard = ({ id }: { id: string }) => {
 
   const flat = data;
 
+  const images: IImage = data?.image;
+  console.log(flat);
+
   return (
-    <Card className="mt-10 ">
-      <CardHeader>
-        <Image
-          src={flat?.image[0]?.url || '/default-image.jpg'}
-          alt={flat?.location || 'Flat Image'}
-          width={400}
-          height={300}
-          className="w-full h-auto object-cover"
-          layout="responsive"
-        />
-      </CardHeader>
+    <div className="mt-10 border rounded-lg p-5">
       <CardContent className="p-4 md:flex justify-between">
         <div className="max-w-[400px] w-full">
-          <Image
-            src={flat?.image[0]?.url || '/default-image.jpg'}
-            alt={flat?.location || 'Flat Image'}
-            width={400}
-            height={300}
-            className="w-full h-auto object-cover"
-            layout="responsive"
-          />
+          <ImageSlider images={images} />
         </div>
         <div className="max-w-[800px] w-full p-4 space-y-4">
           <div className="flex items-center space-x-2">
             <MapPin className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">{flat?.location}</p>
+            <p className="text-lg font-medium text-gray-700">
+              {flat?.location}
+            </p>
           </div>
           <div className="flex items-center space-x-2">
             <DollarSign className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">Rent: ${flat?.rentAmount}</p>
+            <p className="text-lg font-medium text-gray-700">
+              Rent: ${flat?.rentAmount}
+            </p>
           </div>
           <div className="flex items-center space-x-2">
             <CreditCard className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">Advance: ${flat?.advanceAmount}</p>
+            <p className="text-lg font-medium text-gray-700">
+              Advance: ${flat?.advanceAmount}
+            </p>
           </div>
           <div className="flex items-center space-x-2">
             <Expand className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">Space: {flat?.space} sq.ft</p>
+            <p className="text-lg font-medium text-gray-700">
+              Space: {flat?.space} sq.ft
+            </p>
           </div>
           <div className="flex items-center space-x-2">
             <Bed className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">Bedrooms: {flat?.bedRooms}</p>
+            <p className="text-lg font-medium text-gray-700">
+              Bedrooms: {flat?.bedRooms}
+            </p>
           </div>
           <p className="text-gray-700">{flat?.description}</p>
-          <Button onClick={handleFlatShareClick} className="mt-4">Share Request</Button>
+          <Button onClick={handleFlatShareClick} className="mt-4">
+            Share Request
+          </Button>
         </div>
       </CardContent>
-    </Card>
+    </div>
   );
 };
 
