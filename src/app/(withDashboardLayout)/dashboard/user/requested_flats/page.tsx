@@ -1,29 +1,29 @@
 "use client";
 
-import NoData from "@/components/shared/NoData/NoData";
+import React from "react";
+
+import { columns } from "./components/column";
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
+import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
+
 import { useGetMyBookingQuery } from "@/redux/api/bookingApi";
-import RequestFlatCard from "./RequestFlatCard/RequestFlatCard";
+import { RequestedDataTable } from "./components/RequestedDataTable";
 
 const RequestedFlats = () => {
   const { data, isLoading } = useGetMyBookingQuery({});
-  console.log(data);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <main className="max-w-5xl w-full m-auto px-3 my-10 space-y-10">
-      <section>
-        <div className="space-y-4">
-          {data && Array.isArray(data) && data.length > 0 ? (
-            data?.map((item) => <RequestFlatCard key={item.id} item={item} />)
-          ) : (
-            <NoData />
-          )}
-        </div>
-      </section>
-    </main>
+    <section className="py-5">
+      <div>
+        <h3 className="text xl md:text-3xl font-bold mb-4">All Requested Flats</h3>
+        {isLoading ? (
+          <CustomLoader />
+        ) : (
+          <RequestedDataTable data={data} columns={columns} />
+        )}
+      </div>
+    </section>
   );
 };
 

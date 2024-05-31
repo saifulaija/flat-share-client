@@ -26,11 +26,13 @@ import { drawerItems } from "./SidebarItems";
 import SidebarLink from "./SidebarLink";
 import AuthDropdown from "../shared/Header/AuthDropdown";
 import { useGetSingleUserQuery } from "@/redux/api/profileApi";
+import assets from "@/assets";
+import Image from "next/image";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [userRole, setUserRole] = useState("");
   const [scrolled, setScrolled] = useState(false);
-  const {data,isLoading}=useGetSingleUserQuery()
+  const { data, isLoading } = useGetSingleUserQuery();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +57,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <div className="flex h-full max-h-screen flex-col gap-2 fixed">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
-              <Package2 className="h-6 w-6" />
+              {/* <Package2 className="h-6 w-6" /> */}
+              <Image src={assets.svg.logo} width={30} height={30} alt="logo"/>
               <span>ShareNest</span>
             </Link>
             <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
@@ -70,7 +73,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
           </div>
-          
         </div>
       </div>
       <div className="flex flex-col">
@@ -96,32 +98,17 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   <SidebarLink key={index} item={item} />
                 ))}
               </nav>
-              
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
-
-          <div className="text-muted-foreground">
-  <p className="text-lg font-semibold">
-    Welcome{" "}
-    <span className="italic text-primary">
-      {data?.userName ? `Md: ${data.userName}` : "Guest"}
-    </span>
-  </p>
-</div>
-
-
-            {/* <p>Welcome <span className="italic text-primary">Md: {data?.userName}</span></p> */}
-            {/* <form>
-              <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search products..."
-                  className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-                />
-              </div>
-            </form> */}
+            <div className="text-muted-foreground">
+              <p className="text-lg font-semibold">
+                Welcome{" "}
+                <span className="italic text-primary">
+                  {data?.userName ? ` ${data.userName}` : "Guest"}
+                </span>
+              </p>
+            </div>
           </div>
           <AuthDropdown />
         </header>

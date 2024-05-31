@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   PageActions,
   PageHeader,
@@ -13,16 +13,16 @@ import { Package2 } from "lucide-react";
 import assets from "@/assets";
 import Image from "next/image";
 
-
-
 export const Hero = () => {
-  const user =useUserInfo();
+  const user = useUserInfo();
 
   const handleFlatShareClick = () => {
     if (!user?.userId) {
-      const confirmLogin = window.confirm("You need to log in first. Would you like to go to the login page?");
+      const confirmLogin = window.confirm(
+        "You need to log in first. Would you like to go to the login page?"
+      );
       if (confirmLogin) {
-        window.location.href = '/login';
+        window.location.href = "/login";
       }
     } else {
       // If user is already logged in, proceed to blog page
@@ -30,20 +30,15 @@ export const Hero = () => {
     }
   };
 
-
   return (
     <div className=" relative container md:-mt-10">
       <PageHeader>
-      <div className="flex">
-              <span
-                
-                className="flex items-center gap-2 font-semibold text-foreground"
-              >
-           
-                <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
-                <span className="text-xl md:text-2xl">ShareNest</span>
-              </span>
-            </div>
+        <div className="flex">
+          <span className="flex items-center gap-2 font-semibold text-foreground">
+            <Image src={assets.svg.logo} width={40} height={40} alt="logo" />
+            <span className="text-xl md:text-2xl">ShareNest</span>
+          </span>
+        </div>
         <PageHeaderHeading className="hidden md:block tracking-wide">
           Find Your Perfect Flat Share
         </PageHeaderHeading>
@@ -57,18 +52,15 @@ export const Hero = () => {
         </PageHeaderDescription>
         <PageActions>
           <Button
-           onClick={handleFlatShareClick}
+            onClick={handleFlatShareClick}
             className={cn(buttonVariants(), "rounded-[6px]")}
           >
             Share Your Flat
           </Button>
-
-      
         </PageActions>
       </PageHeader>
       <video className="rounded-xl md:-mt-14" autoPlay muted loop>
-        <source src="/content/new-hero.mp4" type="video/mp4"/>
-
+        <source src="/content/new-hero.mp4" type="video/mp4" />
       </video>
     </div>
   );

@@ -136,7 +136,7 @@ const Footer = () => (
           <h2 className="text-xl font-semibold text-primary mb-2">Additional Links</h2>
           <ul className="flex flex-col text-foreground">
             <li>
-              <Link href="/terms-of-use" className="text-md">
+              <Link href="/term-of-use" className="text-md">
                 Terms of Use
               </Link>
             </li>

@@ -60,7 +60,7 @@ const Header = () => {
                   className="flex items-center gap-2 font-semibold text-foreground"
                 >
                   {/* <Package2 className="h-6 w-6" /> */}
-                  <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
+                  <Image src={assets.svg.logo} width={30} height={30} alt="logo"/>
                   <span className="">ShareNest</span>
                 </Link>
                 <div className="grid gap-2 py-6">
@@ -91,7 +91,7 @@ const Header = () => {
                 className="flex items-center gap-2 font-semibold text-foreground"
               >
                 {/* <Package2 className="h-6 w-6" /> */}
-                <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
+                <Image src={assets.svg.logo} width={30} height={30} alt="logo"/>
                 <span className="">ShareNest</span>
               </Link>
             </motion.div>
