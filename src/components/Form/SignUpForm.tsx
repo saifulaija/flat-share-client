@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation";
 
 import { toast } from "../ui/use-toast";
 import { uploadImage } from "@/utils/imgbb";
+import { Loader2 } from "lucide-react";
 const formSchema = z
   .object({
     email: z.string().email({
@@ -92,7 +93,7 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <Card className="w-full space-y-4 px-10 py-6 border-0 ">
+        <div className="w-full space-y-4 px-10 py-6 border-0 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
             <FormField
               control={form.control}
@@ -198,8 +199,9 @@ const SignUpForm = () => {
               )}
             />
           </div>
-          <Button className="w-[100%] mt-2" type="submit">
+          <Button type="submit" disabled={isLoading} className="w-full">
             SignUp
+            {isLoading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
 
           <CardFooter>
@@ -208,7 +210,7 @@ const SignUpForm = () => {
               Sign in
             </Link>
           </CardFooter>
-        </Card>
+        </div>
       </form>
     </Form>
   );

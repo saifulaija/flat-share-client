@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/pagination";
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import { motion } from "framer-motion";
 
 import MyFlatCard from "./components/MyFlatCard";
 
@@ -61,7 +62,9 @@ const Flats = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
-    <div className=" max-w-7xl w-full flex-center">
+    <motion.div className=" max-w-7xl w-full flex-center"  initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ ease: "easeInOut", duration: 1, delay: 1 }}>
       <div>
         <CustomHeader title="Your Shared Flats" />
 
@@ -111,7 +114,7 @@ const Flats = () => {
           </PaginationContent>
         </Pagination>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

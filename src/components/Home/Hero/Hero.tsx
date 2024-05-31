@@ -7,9 +7,12 @@ import {
 } from "./PageHeader";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "../../ui/button";
-import { Announcement } from "./Announcement";
+
 import useUserInfo from "@/hooks/useUserInfo";
 import { Package2 } from "lucide-react";
+import assets from "@/assets";
+import Image from "next/image";
+
 
 
 export const Hero = () => {
@@ -29,14 +32,15 @@ export const Hero = () => {
 
 
   return (
-    <div className=" relative container">
+    <div className=" relative container md:-mt-10">
       <PageHeader>
       <div className="flex">
               <span
                 
                 className="flex items-center gap-2 font-semibold text-foreground"
               >
-                <Package2 className="h-10 w-10" />
+           
+                <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
                 <span className="text-xl md:text-2xl">ShareNest</span>
               </span>
             </div>
@@ -58,6 +62,8 @@ export const Hero = () => {
           >
             Share Your Flat
           </Button>
+
+      
         </PageActions>
       </PageHeader>
       <video className="rounded-xl md:-mt-14" autoPlay muted loop>

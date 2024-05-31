@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import AuthDropdown from "./AuthDropdown";
 import { ModeToggle } from "./ModeToggle";
 import useUserInfo from "@/hooks/useUserInfo";
+import assets from "@/assets";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 
 const Header = () => {
@@ -35,7 +38,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 h-16 ${
         scrolled
           ? "shadow-md border-b bg-background/90 backdrop-blur-lg"
           : "bg-background/70 border-b"
@@ -56,7 +59,8 @@ const Header = () => {
                   href="/"
                   className="flex items-center gap-2 font-semibold text-foreground"
                 >
-                  <Package2 className="h-6 w-6" />
+                  {/* <Package2 className="h-6 w-6" /> */}
+                  <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
                   <span className="">ShareNest</span>
                 </Link>
                 <div className="grid gap-2 py-6">
@@ -79,15 +83,18 @@ const Header = () => {
               </SheetContent>
             </Sheet>
 
-            <div className="hidden md:flex">
+            <motion.div className="hidden md:flex"  whileHover={{ x: 10 }}
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          >
               <Link
                 href="/"
                 className="flex items-center gap-2 font-semibold text-foreground"
               >
-                <Package2 className="h-6 w-6" />
+                {/* <Package2 className="h-6 w-6" /> */}
+                <Image src={assets.svg.logo} width={40} height={40} alt="logo"/>
                 <span className="">ShareNest</span>
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           <nav className="hidden lg:flex gap-6">

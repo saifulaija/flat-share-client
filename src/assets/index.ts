@@ -1,6 +1,8 @@
 const assets = {
   svg: {
     login: require("./svg/login.svg"),
+    newLogo: require("./svg/loginFlat.svg"),
+    logo: require("./svg/logo.svg"),
   },
   images:{
     facebook:require("./images/facebook.png"),
