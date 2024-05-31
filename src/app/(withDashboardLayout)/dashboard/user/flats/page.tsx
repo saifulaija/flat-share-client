@@ -8,7 +8,7 @@ const FlatSharePage = () => {
   return (
     <div className="mt-10 flex justify-center items-center w-full mx-auto shadow-md rounded-sm">
       <div className="w-full max-w-[1000px]">
-       <CustomHeader title="Add Flat"/>
+        <CustomHeader title="Add Flat" />
 
         <AddFlatForm />
       </div>
