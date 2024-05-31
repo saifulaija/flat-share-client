@@ -2,6 +2,7 @@
 
 
 import { PieChart } from "@/components/PieChart/PieChart";
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import { Card } from "@/components/ui/card";
 import { useGetMetaQuery } from "@/redux/api/metaApi";
 import { Album, AreaChart, BarChart, BarChart3, BarChartHorizontal, Dock } from "lucide-react";
@@ -10,7 +11,7 @@ import React from "react";
 export default function UsrDashboardPage () {
   const { data, isLoading } = useGetMetaQuery(undefined);
 
-  console.log(data)
+  
 
   const mapDataToChartData = (data: any) => {
     if (!data) return [];
@@ -39,7 +40,9 @@ export default function UsrDashboardPage () {
 
   const chartData = mapDataToChartData(data);
 
-  console.log(chartData)
+  if (isLoading) {
+    return <CustomLoader/>;
+  }
 
   return (
     <div className="md:flex  gap-2 p-10">

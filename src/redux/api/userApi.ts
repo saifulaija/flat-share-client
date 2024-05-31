@@ -34,12 +34,12 @@ export const userApi = baseApi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: TUserData[], meta: IMeta) => {
-        return {
-          users: response,
-          meta,
-        };
-      },
+      // transformResponse: (response: TUserData[], meta: IMeta) => {
+      //   return {
+      //     users: response,
+      //     meta,
+      //   };
+      // },
       providesTags: [tagTypes.user],
     }),
 

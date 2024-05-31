@@ -1,136 +1,4 @@
-// "use client";
 
-// import { z } from "zod";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { useRouter } from "next/navigation";
-// import {
-//   Form,
-//   FormControl,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-//   FormMessage,
-// } from "@/components/ui/form";
-// import {
-//   Card,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-// } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-// // import { userChangePassword } from "@/services/actions/userChangePassword";
-
-// import { useChangePasswordMutation } from "@/redux/api/authApi";
-// import { logoutUser } from "@/services/actions/logoutUser";
-// import { useToast } from "@/components/ui/use-toast";
-// import { Key, LockKeyhole } from "lucide-react";
-
-// const formSchema = z.object({
-//   oldPassword: z.string().min(6, {
-//     message: "Old password must be at least 6 characters",
-//   }),
-//   newPassword: z.string().min(6, {
-//     message: "New password must be at least 6 characters",
-//   }),
-// });
-
-// const ChangePassword = () => {
-//     const {toast}=useToast()
-//   const router = useRouter();
-
-//   const form = useForm<z.infer<typeof formSchema>>({
-//     resolver: zodResolver(formSchema),
-//     defaultValues: {
-//       oldPassword: "",
-//       newPassword: "",
-//     },
-//   });
-
-//   const [changePassword] = useChangePasswordMutation();
-//   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-
-//       try {
-//       const res = await changePassword(values);
-
-//       if ("data" in res && res.data.status === 200) {
-//         logoutUser(router);
-//        toast({
-//         title:'Logout',
-//         description:'User logout successfully'
-//        })
-//       } else {
-//         throw new Error("Incorrect Old Password");
-//       }
-//     } catch (error:any) {
-//         toast({
-//             title:'Logout',
-//             description:error?.message
-//            })
-//       console.log(error);
-//     }
-//   };
-
-//   return (
-//     <div className="flex items-center justify-center min-h-screen">
-
-//     <Card  className="w-full space-y-4 p-4 border-0 shadow-sm">
-//         <div>
-//         <LockKeyhole size={40} className="text-center" />
-//         </div>
-//           <Form {...form}>
-//             <form
-//               onSubmit={form.handleSubmit(onSubmit)}
-//               className="w-full max-w-md"
-//             >
-//               <div>
-//                 <FormField
-//                   control={form.control}
-//                   name="oldPassword"
-//                   render={({ field }) => (
-//                     <FormItem>
-//                       <FormLabel>Old Password</FormLabel>
-//                       <FormControl>
-//                         <Input
-//                           type="password"
-//                           placeholder="Enter your old password"
-//                           {...field}
-//                         />
-//                       </FormControl>
-//                       <FormMessage />
-//                     </FormItem>
-//                   )}
-//                 />
-//                 <FormField
-//                   control={form.control}
-//                   name="newPassword"
-//                   render={({ field }) => (
-//                     <FormItem>
-//                       <FormLabel>New Password</FormLabel>
-//                       <FormControl>
-//                         <Input
-//                           type="password"
-//                           placeholder="Enter your new password"
-//                           {...field}
-//                         />
-//                       </FormControl>
-//                       <FormMessage />
-//                     </FormItem>
-//                   )}
-//                 />
-//                 <Button className="w-full" type="submit">
-//                   Change Password
-//                 </Button>
-//               </div>
-//             </form>
-//           </Form>
-//     </Card>
-//     </div>
-//   );
-// };
-
-// export default ChangePassword;
 
 "use client";
 
@@ -213,7 +81,7 @@ const ChangePassword = () => {
 
   return (
     <div className="flex items-center justify-center mt-20">
-      <Card className="w-full max-w-lg space-y-4 p-6 border shadow-lg ">
+      <div className="w-full max-w-lg space-y-4 p-6 border rounded-md">
         <CardHeader className="space-y-1 text-center">
           <LockKeyhole size={40} className="mx-auto text-gray-600" />
           <CardTitle className="text-2xl font-bold">Change Password</CardTitle>
@@ -284,7 +152,7 @@ const ChangePassword = () => {
             </Button>
           </form>
         </Form>
-      </Card>
+      </div>
     </div>
   );
 };

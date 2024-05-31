@@ -18,14 +18,13 @@ import {
 } from "@/components/ui/pagination";
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
-import { motion } from "framer-motion";
 
 import MyFlatCard from "./components/MyFlatCard";
 
 const Flats = () => {
   const query: Record<string, any> = {};
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(6);
   query["page"] = page;
   query["limit"] = limit;
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -36,7 +35,7 @@ const Flats = () => {
   }
 
   const { data, isLoading } = useGetMyFlatsQuery({ ...query });
-  console.log(data);
+
 
   const flats = data?.flats;
 
@@ -62,9 +61,7 @@ const Flats = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
-    <motion.div className=" max-w-7xl w-full flex-center"  initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ ease: "easeInOut", duration: 1, delay: 1 }}>
+    <div className=" max-w-7xl w-full flex-center">
       <div>
         <CustomHeader title="Your Shared Flats" />
 
@@ -78,14 +75,13 @@ const Flats = () => {
             <Search className="w-6 h-6 text-gray-400" />
           </div>
         </div>
-     
 
         <section className="w-full">
           <div className="space-y-4">
-            {  flats?.data &&
-            Array.isArray(flats?.data) &&
-            flats?.data?.length > 0 ? (
-              flats?.data?.map((item) => (
+            {data?.data &&
+            Array.isArray(data?.data) &&
+            data?.data?.length > 0 ? (
+              data?.data?.map((item: any) => (
                 <MyFlatCard key={item.id} item={item} />
               ))
             ) : (
@@ -93,28 +89,30 @@ const Flats = () => {
             )}
           </div>
         </section>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious onClick={handlePrePage} />
-            </PaginationItem>
-            {pages.map((currentPage) => (
-              <PaginationItem
-                key={currentPage}
-                className={page === currentPage ? "bg-primary" : ""}
-              >
-                <PaginationLink onClick={() => setPage(currentPage)}>
-                  {currentPage}
-                </PaginationLink>
+      <div className="my-5">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious onClick={handlePrePage} />
               </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext onClick={handleNextPage} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+              {pages.map((currentPage) => (
+                <PaginationItem
+                  key={currentPage}
+                  className={page === currentPage ? "bg-primary rounded-full" : ""}
+                >
+                  <PaginationLink onClick={() => setPage(currentPage)}>
+                    {currentPage}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext onClick={handleNextPage} />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
       </div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

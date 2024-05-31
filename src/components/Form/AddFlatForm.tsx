@@ -20,7 +20,7 @@ import { toast } from "../ui/use-toast";
 import { uploadImage } from "@/utils/imgbb";
 import { useCreateFlatMutation } from "@/redux/api/flatApi";
 import useUserInfo from "@/hooks/useUserInfo";
-import { Card } from "../ui/card";
+
 import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
@@ -78,7 +78,7 @@ const AddFlatForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full space-y-4 px-10 py-6 border shadow-sm">
+        <div className="w-full space-y-4 px-10 py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
             <FormField
               control={form.control}

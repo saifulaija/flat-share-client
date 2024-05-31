@@ -8,6 +8,7 @@ import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
 
 import { useGetMyBookingQuery } from "@/redux/api/bookingApi";
 import { RequestedDataTable } from "./components/RequestedDataTable";
+import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
 
 const RequestedFlats = () => {
   const { data, isLoading } = useGetMyBookingQuery({});
@@ -16,7 +17,7 @@ const RequestedFlats = () => {
   return (
     <section className="py-5">
       <div>
-        <h3 className="text xl md:text-3xl font-bold mb-4">All Requested Flats</h3>
+       <CustomHeader title="Your's Requested Flats"/>
         {isLoading ? (
           <CustomLoader />
         ) : (

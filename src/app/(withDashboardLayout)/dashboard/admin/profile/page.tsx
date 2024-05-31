@@ -30,6 +30,7 @@ import {
 } from "@/redux/api/profileApi";
 import UserProfileUpdateForm from "@/components/Form/UserProfileUpdateForm";
 import UserProfileInformation from "./components/UserProfileInformation";
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 
 
 const formSchema = z.object({
@@ -48,9 +49,10 @@ const ProfilePage = () => {
 
   const [updateProfile, { isLoading: update }] = useUpdateUserProfileMutation();
   const { data, isLoading, error } = useGetSingleUserQuery();
+  const userData:any=data
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CustomLoader/>;
   }
 
   if (error) {
@@ -148,13 +150,13 @@ const ProfilePage = () => {
                     </div>
                   }
                 >
-                  <UserProfileUpdateForm data={data} />
+                  <UserProfileUpdateForm data={userData} />
                 </MyDialog>
               </div>
             </div>
           </div>
 
-          <UserProfileInformation data={data} />
+          <UserProfileInformation data={userData} />
         </div>
       </div>
     </article>

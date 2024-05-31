@@ -1,6 +1,7 @@
 "use client";
 
 import { PieChart } from "@/components/PieChart/PieChart";
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import { Card } from "@/components/ui/card";
 import { useGetMetaQuery } from "@/redux/api/metaApi";
 import React from "react";
@@ -51,7 +52,7 @@ export default function AdminDashboardPage() {
   console.log(chartData);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CustomLoader/>;
   }
 
   if (error) {

@@ -72,8 +72,8 @@ const DetailsCard = ({ id }: { id: string }) => {
 
   const flat = data;
 
-  const images: IImage = data?.image;
-  console.log(flat);
+  const images:any[] = data?.image;
+  console.log(images);
 
   return (
     <div className="mt-10 border rounded-lg p-5">
