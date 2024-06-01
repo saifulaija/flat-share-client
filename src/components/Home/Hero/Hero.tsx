@@ -59,9 +59,7 @@ export const Hero = () => {
           </Button>
         </PageActions>
       </PageHeader>
-      {/* <video className="rounded-xl md:-mt-14" autoPlay muted loop>
-        <source src="/content/new-hero.mp4" type="video/mp4" />
-      </video> */}
+     
     </div>
   );
 };
