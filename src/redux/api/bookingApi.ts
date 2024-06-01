@@ -49,13 +49,13 @@ export const bookingApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.admin],
     }),
     // update a Admin
-    updateAdmin: build.mutation({
+    updateBooking: build.mutation({
       query: (data) => ({
-        url: `/admin/${data.id}`,
-        method: "PATCH",
+        url: `/booking/booking-requests/${data.id}`,
+        method: "PUT",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.admin,tagTypes.user],
+      invalidatesTags: [tagTypes.booking,tagTypes.flat],
     }),
     getMyBooking: build.query({
       query: () => ({
@@ -73,7 +73,7 @@ export const {
 //   useGetAllAdminsQuery,
   useDeleteAdminMutation,
 useGetSingleAdminQuery,
-  useUpdateAdminMutation,
+useUpdateBookingMutation,
 useCreateBookingMutation,
 useGetMyBookingQuery
 

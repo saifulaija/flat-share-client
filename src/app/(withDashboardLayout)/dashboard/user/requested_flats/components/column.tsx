@@ -67,8 +67,8 @@ export const columns: ColumnDef<TRequestFlat>[] = [
     },
   },
   {
-    accessorKey: "rentAmount",
-    header: "Rent Amount",
+    accessorKey: "status",
+    header: "Status",
     cell: ({ row }) => {
       const status = row.original.status;
       return <div>

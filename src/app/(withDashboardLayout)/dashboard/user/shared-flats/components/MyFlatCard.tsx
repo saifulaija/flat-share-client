@@ -59,19 +59,23 @@ const MyFlatCard = ({ item }: any) => {
           {formateDate(item?.createdAt)}
         </p>
       </div>
-      <div className="text-muted-foreground">
-        <p className="flex items-center gap-1.5">
-          <span>FlatRequest:</span>
-          {item?.Request_Flat?.length}
-        </p>
-      </div>
 
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
           <Link href={`/dashboard/user/shared-flats/edit/${item.id}`}>
-           
             <Button variant="outline">Edit</Button>
           </Link>
+          {item?.Request_Flat?.length === 0 ? (
+            <Button variant="outline" disabled>
+              Confirm Request (0)
+            </Button>
+          ) : (
+            <Link href={`/dashboard/user/shared-flats/confirm/${item.id}`}>
+              <Button variant="outline">
+                Confirm Request ({item?.Request_Flat?.length})
+              </Button>
+            </Link>
+          )}
 
           <MyAlertDialog
             title="Confirm Deletion"
@@ -81,12 +85,7 @@ const MyFlatCard = ({ item }: any) => {
         </p>
       </div>
     </article>
-
- 
-
   );
 };
 
 export default MyFlatCard;
-
-

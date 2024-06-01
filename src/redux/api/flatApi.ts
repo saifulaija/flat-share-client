@@ -53,7 +53,7 @@ const flatsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
 
-      providesTags: [tagTypes.flat],
+      providesTags: [tagTypes.flat,tagTypes.booking],
     }),
     getSingleFlatForModerator: build.query({
       query: (id) => ({
