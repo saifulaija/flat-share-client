@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
 
   const chartData = mapDataToChartData(data);
 
-  console.log(chartData);
+
 
   if (isLoading) {
     return <CustomLoader/>;

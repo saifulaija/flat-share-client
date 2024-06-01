@@ -27,7 +27,7 @@ const MyFlatCard = ({ item }: any) => {
   };
 
   return (
-    <article className="flex flex-col md:flex-row justify-between  scroll-mx-1 items-center gap-3 border rounded-lg p-5 hover:bg-muted/60">
+    <article className="flex flex-col md:flex-row justify-between   items-center gap-3 border rounded-lg p-2">
       <Image
         src={item?.image[0].url || "logo"}
         alt="image"
@@ -35,7 +35,7 @@ const MyFlatCard = ({ item }: any) => {
         height={80}
         className="self-center rounded-md"
       />
-      <div className="text-muted-foreground">
+      <div className="text-muted-foreground ">
         <p className="flex items-center gap-1.5">
           <LocateIcon size={16} className="shrink-0" />
           {item.location}
@@ -61,7 +61,7 @@ const MyFlatCard = ({ item }: any) => {
       </div>
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-          <span>Request For Flat:</span>
+          <span>FlatRequested :</span>
           {item?.Request_Flat?.length}
         </p>
       </div>
@@ -81,6 +81,9 @@ const MyFlatCard = ({ item }: any) => {
         </p>
       </div>
     </article>
+
+ 
+
   );
 };
 

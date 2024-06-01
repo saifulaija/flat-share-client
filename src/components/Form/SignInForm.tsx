@@ -128,7 +128,7 @@ const SignInForm = () => {
 
           <CardFooter>
             If you don&apos;t have an account, please
-            <Link href="/register" className="text-blue-500 hover:underline">
+            <Link href="/register" className="text-primary hover:underline">
               Sign up
             </Link>
           </CardFooter>

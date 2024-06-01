@@ -50,7 +50,9 @@ import { IImage } from "@/types/image";
 
 const DetailsCard = ({ id }: { id: string }) => {
   const user = useUserInfo();
+  console.log(user)
   const { data, isLoading } = useGetSingleFlatQuery(id);
+  console.log(data)
 
   const handleFlatShareClick = () => {
     if (!user?.userId) {
@@ -73,7 +75,7 @@ const DetailsCard = ({ id }: { id: string }) => {
   const flat = data;
 
   const images:any[] = data?.image;
-  console.log(images);
+  const isDisabled = user?.userId === data?.userId;
 
   return (
     <div className="mt-10 border rounded-lg p-5">
@@ -113,9 +115,20 @@ const DetailsCard = ({ id }: { id: string }) => {
             </p>
           </div>
           <p className="text-gray-700">{flat?.description}</p>
-          <Button onClick={handleFlatShareClick} className="mt-4">
-            Share Request
-          </Button>
+          <div className="relative mt-4 group">
+      <Button
+        onClick={handleFlatShareClick}
+        disabled={isDisabled}
+        className={`relative ${isDisabled ? 'cursor-not-allowed' : ''}`}
+      >
+        {isDisabled ? 'Your Shared Flat' : 'Share Request'}
+      </Button>
+      {isDisabled && (
+        <div className="absolute bottom-full mb-2 left-40 transform -translate-x-1/2 w-40 bg-muted/95  text-center text-xs rounded-lg py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          It is your shared flat
+        </div>
+      )}
+    </div>
         </div>
       </CardContent>
     </div>

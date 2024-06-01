@@ -20,13 +20,17 @@ const AuthDropdown = () => {
   const { toast } = useToast();
   const user = useUserInfo();
 
-  const { data } = useGetSingleUserQuery();
+  const { data, isLoading } = useGetSingleUserQuery();
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
     toast({ title: "Logout", description: "user logout successfully" });
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -54,7 +58,7 @@ const AuthDropdown = () => {
         </DropdownMenu>
       ) : (
         <Link href="/login">
-          {" "}
+         
           <Button variant="outline">Login</Button>
         </Link>
       )}
@@ -63,3 +67,6 @@ const AuthDropdown = () => {
 };
 
 export default AuthDropdown;
+
+
+

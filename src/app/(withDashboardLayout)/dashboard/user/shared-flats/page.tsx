@@ -61,7 +61,7 @@ const Flats = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
-    <div className=" max-w-7xl w-full flex-center">
+    <div className="flex-center">
       <div>
         <CustomHeader title="Your Shared Flats" />
 

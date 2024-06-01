@@ -93,7 +93,7 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full space-y-4 px-10 py-6 border-0 ">
+        <div className="w-full space-y-4 md:px-10 py-6 border-0 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
             <FormField
               control={form.control}
@@ -204,12 +204,12 @@ const SignUpForm = () => {
             {isLoading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
 
-          <CardFooter>
+          <div className="text-balance text-center">
             if have you an account, please
-            <Link href="/login" className="text-blue-500 hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Sign in
             </Link>
-          </CardFooter>
+          </div>
         </div>
       </form>
     </Form>

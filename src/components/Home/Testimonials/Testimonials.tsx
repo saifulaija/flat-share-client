@@ -68,7 +68,7 @@ const Testimonials: React.FC = () => {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="p-4 border rounded-lg shadow">
                 <p className="text-lg font-semibold">{testimonial.name}</p>
-                <p className="text-gray-700 mt-2">{testimonial.testimonial}</p>
+                <p className=" mt-2">{testimonial.testimonial}</p>
               </div>
             ))}
           </div>
