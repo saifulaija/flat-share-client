@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "../../ui/button";
 
 import useUserInfo from "@/hooks/useUserInfo";
-import { Package2 } from "lucide-react";
+
 import assets from "@/assets";
 import Image from "next/image";
 
