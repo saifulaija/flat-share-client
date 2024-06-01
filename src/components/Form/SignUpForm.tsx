@@ -14,12 +14,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Card,
 
-  CardFooter,
-
-} from "../ui/card";
 
 import Link from "next/link";
 import { useCreateUserMutation } from "@/redux/api/userApi";
@@ -204,10 +199,10 @@ const SignUpForm = () => {
             {isLoading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
 
-          <div className="text-balance text-center">
-            if have you an account, please
+          <div className="text-balance flex justify-center items-center gap-1 text-center">
+           <span> Already have an account?</span>
             <Link href="/login" className="text-primary hover:underline">
-              Sign in
+              Login Here
             </Link>
           </div>
         </div>

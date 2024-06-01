@@ -122,16 +122,16 @@ const SignInForm = () => {
           />
           <Link href='/forgot-password'><p className="text-sm font-semibold mt-4 hover:underline text-end">Forgot password ?</p></Link>
           <Button type="submit" disabled={loading} className="w-full">
-            SignIn
+            Login
             {loading && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
           </Button>
 
-          <CardFooter>
-            If you don&apos;t have an account, please
+          <div className="text-balance flex justify-center items-center gap-1 text-center">
+           <span>New user?</span>
             <Link href="/register" className="text-primary hover:underline">
-              Sign up
+              Register Here
             </Link>
-          </CardFooter>
+          </div>
         </div>
       </form>
     </Form>

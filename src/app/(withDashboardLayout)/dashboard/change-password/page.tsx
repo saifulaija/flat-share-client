@@ -80,7 +80,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-20">
+    <div className="flex items-center justify-center p-10">
       <div className="w-full max-w-lg space-y-4 p-6 border rounded-md">
         <CardHeader className="space-y-1 text-center">
           <LockKeyhole size={40} className="mx-auto text-gray-600" />

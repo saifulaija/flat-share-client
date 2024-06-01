@@ -9,41 +9,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
-import useUserInfo from "@/hooks/useUserInfo";
-import { useGetSingleUserQuery } from "@/redux/api/profileApi";
+
 import { logoutUser } from "@/services/actions/logoutUser";
-import { CircleUser } from "lucide-react";
+import { getUserInfo } from "@/services/authServics";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AuthDropdown = () => {
   const { toast } = useToast();
-  const user = useUserInfo();
-
-  const { data, isLoading } = useGetSingleUserQuery();
+  const user = getUserInfo();
 
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);
-    toast({ title: "Logout", description: "user logout successfully" });
+    toast({ title: "Logout", description: "User logged out successfully" });
   };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <>
-      {user?.userId ? (
+      {user && user.userId ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">
-              {data?.id ? (
-                <MyAvatar url={data?.profilePhoto} alt="image" />
-              ) : (
-                <CircleUser className="h-5 w-5" />
-              )}
-
+              <MyAvatar url={user.profilePhoto} alt="User Avatar" />
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>
@@ -52,14 +41,12 @@ const AuthDropdown = () => {
               <DropdownMenuItem>Profile</DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />
-
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
         <Link href="/login">
-         
-          <Button variant="outline">Login</Button>
+          <Button>Login</Button>
         </Link>
       )}
     </>
@@ -67,6 +54,3 @@ const AuthDropdown = () => {
 };
 
 export default AuthDropdown;
-
-
-

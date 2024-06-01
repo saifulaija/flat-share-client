@@ -59,7 +59,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Link href="/" className="flex items-center gap-2 font-semibold">
               {/* <Package2 className="h-6 w-6" /> */}
               <Image src={assets.svg.logo} width={30} height={30} alt="logo"/>
-              <span>ShareNest</span>
+              <span className="tracking-wide">Share<span className="text-primary text-xl">N</span>est</span>
             </Link>
             <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
               <Bell className="h-4 w-4" />

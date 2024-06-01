@@ -36,6 +36,8 @@ const FlatCard = ({ flat }: any) => {
           width={200}
           height={150}
           alt="image"
+         
+          
           layout="responsive"
         />
         <div className="flex-between">

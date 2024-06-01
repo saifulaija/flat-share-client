@@ -25,7 +25,8 @@ import { useForm } from "react-hook-form";
 import { useCreateImageMutation } from "@/redux/api/imageApi";
 import FlatUpdateForm from "@/components/Form/FlatUpdateForm";
 import MyDialog from "@/components/ShadCn/MyDialog";
-import { motion } from "framer-motion";
+
+import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 
 type TProps = {
   params: {
@@ -52,7 +53,7 @@ const UpdateFlatPage = ({ params }: TProps) => {
   const { data, isLoading, error } = useGetSingleFlatQuery(id);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CustomLoader/>
   }
 
   if (error) {
@@ -91,9 +92,7 @@ const UpdateFlatPage = ({ params }: TProps) => {
 
 
   return (
-    <motion.article className="flex flex-col md:flex-row justify-between items-start gap-5 border rounded-lg p-5 mt-10 "  initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ ease: "easeInOut", duration: 1, delay: 1 }}>
+    <article className="flex flex-col md:flex-row justify-between items-start gap-5 border rounded-lg p-5 mt-10 ">
       <div>
         <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 w-full lg:sticky top-0">
@@ -182,7 +181,7 @@ const UpdateFlatPage = ({ params }: TProps) => {
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 };
 

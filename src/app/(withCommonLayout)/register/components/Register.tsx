@@ -1,36 +1,53 @@
 
 
 
-'use client'
-import React from "react";
-import assets from "@/assets";
-import Image from "next/image";
-import SignUpForm from "@/components/Form/SignUpForm";
-import { motion } from "framer-motion";
+'use client';
 
- const Register = () => {
+import SignUpForm from "@/components/Form/SignUpForm";
+import { AnimatePresence, motion } from "framer-motion";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const Register = () => {
   return (
-    <motion.div className="flex items-center justify-center   py-12 px-4 sm:px-6 lg:px-8"  initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ ease: "easeInOut", duration: .5, delay: .5 }}>
-      <div className="max-w-5xl w-full space-y-8">
-        <div className="text-center">
-          <h2 className=" text-2xl">
-            Register Now
-          </h2>
-        </div>
-        <div className="pb-4 px-6 shadow rounded-lg sm:px-10">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-            <div className="w-full md:w-3/4">
-              <SignUpForm />
+    <AnimatePresence>
+      <motion.div
+        className="flex items-center justify-center mt-20 p-4 "
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <div className="max-w-5xl w-full space-y-8 border rounded-lg py-4 shadow-md">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            <h2 className="text-2xl">Register Now</h2>
+          </motion.div>
+          <motion.div
+            className="pb-4 px-6 shadow rounded-lg sm:px-10"
+            variants={sectionVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ ease: "easeInOut", duration: 0.8, delay: 0.5 }}
+          >
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+              <div className="w-full md:w-3/4">
+                <SignUpForm />
+              </div>
             </div>
-           
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
-
-export default Register
+export default Register;

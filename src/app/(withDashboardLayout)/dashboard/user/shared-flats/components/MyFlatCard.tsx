@@ -61,7 +61,7 @@ const MyFlatCard = ({ item }: any) => {
       </div>
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
-          <span>FlatRequested :</span>
+          <span>FlatRequest:</span>
           {item?.Request_Flat?.length}
         </p>
       </div>

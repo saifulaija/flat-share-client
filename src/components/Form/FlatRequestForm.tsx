@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useCreateBookingMutation } from "@/redux/api/bookingApi";
 import { Loader2 } from "lucide-react";
+import CustomLoader from "../shared/CustomLoader/CustomLoader";
 
 const formSchema = z.object({
   userName: z.string().min(1, { message: "User name must be provided" }),
@@ -94,167 +95,169 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
   return (
     <div>
       {isLoadingProfile ? (
-        <p>Loading...</p>
+       <CustomLoader/>
       ) : (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
-              <FormField
-                control={form.control}
-                name="userName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>User Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="User Name..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="email"
-                        placeholder="Email..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="profession"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Profession</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Profession..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="bio"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Biography</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Biography..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Address</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Address..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="contactNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Contact Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Contact Number..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="additionalInformation"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Additional Information</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Enter additional information..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="termsAndCondition"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Terms and Conditions</FormLabel>
-                    <FormControl>
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Enter terms and conditions..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="mt-6">
-              <Button type="submit" disabled={update} className="w-full">
-                submit
-                {update && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
-              </Button>
-            </div>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-lg mx-auto">
+         <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+                <FormField
+                  control={form.control}
+                  name="userName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>User Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="User Name..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+  
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="email"
+                          placeholder="Email..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+  
+                <FormField
+                  control={form.control}
+                  name="profession"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Profession</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Profession..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+  
+                <FormField
+                  control={form.control}
+                  name="bio"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Biography</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Biography..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+  
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Address..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+  
+                <FormField
+                  control={form.control}
+                  name="contactNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Contact Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Contact Number..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="additionalInformation"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Additional Information</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Enter additional information..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="termsAndCondition"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Terms and Conditions</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          type="text"
+                          placeholder="Enter terms and conditions..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="mt-6">
+                <Button type="submit" disabled={update} className="w-full">
+                  submit
+                  {update && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
+                </Button>
+              </div>
+         </div>
           </form>
         </Form>
       )}
