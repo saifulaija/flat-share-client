@@ -137,6 +137,7 @@ import {
 } from "@/components/ui/pagination";
 import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
 
+
 const Flats = () => {
   const query: Record<string, any> = {};
   const [page, setPage] = useState(1);
@@ -170,7 +171,7 @@ const Flats = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
-    <div className="w-full py-5">
+    <div className="container mx-auto">
       <CustomHeader title="Find Flats" />
 
       <div className="w-full flex justify-center items-center">
@@ -187,9 +188,9 @@ const Flats = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
+      <div className="container mx-auto">
         {data?.data?.length > 0 ? (
-          <div className="grid md:grid-cols-3 gap-3">
+          <div className="grid md:grid-cols-3 gap-4">
             {data?.data?.map((flat: any, index: any) => (
               <FlatCard key={index} flat={flat} />
             ))}

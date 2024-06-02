@@ -21,25 +21,25 @@ const Register = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <div className="max-w-5xl w-full space-y-8 rounded-lg py-4">
+        <div className="max-w-3xl w-full space-y-4 rounded-lg border-[.25px] border-primary/40 py-4">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <h2 className="text-2xl">Register Now</h2>
+            <h2 className="text-xl md:text-2xl text-primary font-semibold">Register Now</h2>
           </motion.div>
           <motion.div
-            className="pb-4 px-6 shadow rounded-lg sm:px-10"
+            className="pb-2 px-4  rounded-lg sm:px-6 "
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             transition={{ ease: "easeInOut", duration: 0.8, delay: 0.5 }}
           >
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              <div className="w-full md:w-3/4">
+            <div className="flex flex-col md:flex-row items-center justify-center">
+              <div className="w-full md:w-2xl">
                 <SignUpForm />
               </div>
             </div>

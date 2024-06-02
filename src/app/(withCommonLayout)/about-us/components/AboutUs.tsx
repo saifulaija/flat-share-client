@@ -20,7 +20,7 @@ const AboutUs = () => (
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <motion.h1 
-        className="text-3xl font-bold mb-8 text-center"
+        className="text-3xl font-bold mb-8 text-center text-primary"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}

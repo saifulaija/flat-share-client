@@ -67,7 +67,7 @@ const Testimonials: React.FC = () => {
   }));
 
   return (
-    <div className="flex-center mx-auto ">
+    <div className="container mx-auto">
       <div>
         <CustomHeader title="Testimonials" />
         <div className="space-y-16">
@@ -92,7 +92,7 @@ const Testimonials: React.FC = () => {
                 </video>
               </div>
             </div>
-            <div className="lg:w-1/2 w-full">
+            <div className="lg:w-1/2 w-full px-10 md:px-0">
               <MyCarousel items={testimonialItems} />
             </div>
           </div>

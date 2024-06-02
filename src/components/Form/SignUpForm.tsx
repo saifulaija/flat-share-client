@@ -88,7 +88,7 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full space-y-4 md:px-10 py-6 border-0 ">
+        <div className="w-full space-y-4 md:px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
             <FormField
               control={form.control}

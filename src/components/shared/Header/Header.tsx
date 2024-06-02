@@ -52,7 +52,7 @@ const Header = () => {
           : "bg-background/70 border-b"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto md:px-4">
         <header className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Sheet>
@@ -86,7 +86,7 @@ const Header = () => {
                         key={menuItem.label}
                         className={`link ${
                           pathname === menuItem.path
-                            ? "border-b-2 border-blue-600"
+                            ? "border-b-2 space-x-2 w-[60px] border-primary"
                             : ""
                         } text-foreground`}
                       >

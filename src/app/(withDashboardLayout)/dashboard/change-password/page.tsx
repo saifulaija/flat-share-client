@@ -81,10 +81,10 @@ const ChangePassword = () => {
 
   return (
     <div className="flex items-center justify-center p-10">
-      <div className="w-full max-w-lg space-y-4 p-6 border rounded-md">
+      <div className="w-full max-w-lg space-y-4 p-4 md:p-6 border rounded-md">
         <CardHeader className="space-y-1 text-center">
-          <LockKeyhole size={40} className="mx-auto text-gray-600" />
-          <CardTitle className="text-2xl font-bold">Change Password</CardTitle>
+          <LockKeyhole size={40} className="mx-auto text-primary" />
+          <CardTitle className="text-xl md:text-2xl font-semibold">Change Password</CardTitle>
           <CardDescription className="text-gray-500">
             Enter your old password and a new password to update your password.
           </CardDescription>

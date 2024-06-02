@@ -13,12 +13,11 @@ import Link from "next/link";
 import useUserInfo from "@/hooks/useUserInfo";
 
 import { IFlat, IFlatData } from "@/types/flat";
+import { formateMoney } from "@/utils/common";
 
 const FlatCard = ({ flat }: any) => {
   const user = useUserInfo();
-  // const user = getUserInfo()
-  console.log(user);
-  // Function to truncate the description to show only 20 words
+
   const truncateDescription = (description: string) => {
     const words = description.split(" ");
     if (words.length > 20) {
@@ -28,7 +27,7 @@ const FlatCard = ({ flat }: any) => {
   };
 
   return (
-    <div className="shadow-xl w-96 max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
+    <div className="shadow-md max-w-[380px] md:w-[400px] max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
       <CardHeader>
         <Image
           className="rounded-lg"
@@ -47,8 +46,8 @@ const FlatCard = ({ flat }: any) => {
           </div>
        
           <div className="flex items-center">
-            <DollarSign className="w-4 h-4 mr-1 text-gray-600" />
-            <p className="text-gray-500">{flat.rentAmount}</p>
+            
+            <p className="text-gray-500">{formateMoney(flat.rentAmount)}</p>
           </div>
         </div>
       </CardHeader>

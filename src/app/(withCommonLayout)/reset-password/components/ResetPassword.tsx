@@ -12,23 +12,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-import { logoutUser } from "@/services/actions/logoutUser";
 import { useToast } from "@/components/ui/use-toast";
-import { Key, Loader2, LockKeyhole } from "lucide-react";
-import {
-  useForgotPasswordMutation,
-  useResetPasswordMutation,
-} from "@/redux/api/authApi";
-import { MyAlert } from "@/components/ShadCn/MyAlert";
+import { Loader2, LockKeyhole } from "lucide-react";
+import { useResetPasswordMutation } from "@/redux/api/authApi";
 import { useEffect } from "react";
 import { authKey } from "@/constants/authKey";
 import { deleteCookies } from "@/services/actions/deleteCookies";
@@ -86,13 +75,18 @@ const ResetPassword = () => {
   };
 
   return (
-    <motion.div className="flex items-center justify-center p-20"  initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ ease: "easeInOut", duration: 1, delay: 1 }}>
-      <div className="w-full max-w-lg space-y-6 p-10 border shadow-lg ">
+    <motion.div
+      className="flex items-center justify-center py-16 px-1   md:p-20"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ ease: "easeInOut", duration: 1, delay: 1 }}
+    >
+      <div className="w-full max-w-lg space-y-6 p-4 md:p-10 border-[.25px] border-primary/40 rounded-sm">
         <CardHeader className="space-y-1 text-center">
-          <LockKeyhole size={40} className="mx-auto text-gray-600" />
-          <CardTitle className="text-2xl font-bold">Reset password</CardTitle>
+          <LockKeyhole size={40} className="mx-auto text-primary" />
+          <CardTitle className="text-xl md:text-2xl font-semibold text-primary">
+            Reset password
+          </CardTitle>
           <CardDescription className="text-gray-500 text-balance">
             Enter your new password to reset your password.
           </CardDescription>

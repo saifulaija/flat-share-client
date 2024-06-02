@@ -71,6 +71,9 @@
     @apply max-w-[1400px] lg:mx-auto p-5 mt-12 md:px-10 w-full
   }
 
+
+
+
   .text-balance{
     text-wrap: balance;
   }

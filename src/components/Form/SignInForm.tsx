@@ -78,7 +78,7 @@ const SignInForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
         <div className="w-full max-w-md space-y-4 p-4 border-0 shadow-sm">
           <CardHeader>
-            <h2 className="text-2xl">Login</h2>
+            <h2 className="text-xl  md:text-2xl font-semibold text-primary">Login</h2>
             <p>
               Enter your email below to login to your account.
             </p>

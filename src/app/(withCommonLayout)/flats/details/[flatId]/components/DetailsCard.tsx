@@ -52,12 +52,12 @@ const DetailsCard = ({ id }: { id: string }) => {
   const isDisabled = user?.userId === data?.userId;
 
   return (
-    <div className="mt-10 border rounded-lg p-5">
-      <div className="p-4 md:flex justify-between">
-        <div className="max-w-[400px] w-full">
+    <div className="mt-10 border-[.25px] border-primary/40 rounded-lg p-5">
+      <div className="md:p-4 md:flex md:justify-between">
+        <div className="max-w-full md:max-w-[400px] w-full">
           <ImageSlider images={images} />
         </div>
-        <div className="max-w-[800px] w-full p-4 space-y-3">
+        <div className="max-w-[800px] w-full p-1 md:p-4 space-y-3">
           <div className="flex items-center space-x-2">
             <p className="font-medium text-lg">Location:</p>
             <p className="text-sm">{flat?.location}</p>
@@ -92,7 +92,7 @@ const DetailsCard = ({ id }: { id: string }) => {
             <p className="text-sm">{formateDate(flat?.createdAt)}</p>
           </div>
           <div className="flex flex-col space-x-2">
-            <p className="font-medium text-lg text-balance">Description:</p>
+            <p className="font-medium text-lg">Description:</p>
             <p className="text-sm">{flat?.description}</p>
           </div>
 

@@ -11,9 +11,9 @@ type TProps = {
 const FlatSharedRequestPage = ({ params }: TProps) => {
   const { flatId } = params;
   return (
-    <div className="p-20 w-full">
+    <div className="md:p-20">
       <CustomHeader title="Add Your Flat Request" />
-      <div className="mt-16">
+      <div className="mt-10 ">
         <FlatRequestForm flatId={flatId} />
       </div>
     </div>

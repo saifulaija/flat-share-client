@@ -13,7 +13,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import {useToast } from "../ui/use-toast";
+import { useToast } from "../ui/use-toast";
 import useUserInfo from "@/hooks/useUserInfo";
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
 import { useForm } from "react-hook-form";
@@ -78,7 +78,6 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
   }, [data, form]);
 
   const onSubmit = async (values: any) => {
-    
     try {
       const res = await createBooking({ ...values, flatId }).unwrap();
 
@@ -95,12 +94,15 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
   return (
     <div>
       {isLoadingProfile ? (
-       <CustomLoader/>
+        <CustomLoader />
       ) : (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-lg mx-auto">
-         <div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full  border-[.25px] border-primary/40 p-10 rounded-md"
+          >
+            <div>
+              <div className="grid  grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
                 <FormField
                   control={form.control}
                   name="userName"
@@ -119,7 +121,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                     </FormItem>
                   )}
                 />
-  
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -138,7 +140,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                     </FormItem>
                   )}
                 />
-  
+
                 <FormField
                   control={form.control}
                   name="profession"
@@ -157,7 +159,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                     </FormItem>
                   )}
                 />
-  
+
                 <FormField
                   control={form.control}
                   name="bio"
@@ -176,7 +178,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                     </FormItem>
                   )}
                 />
-  
+
                 <FormField
                   control={form.control}
                   name="address"
@@ -195,7 +197,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                     </FormItem>
                   )}
                 />
-  
+
                 <FormField
                   control={form.control}
                   name="contactNumber"
@@ -257,7 +259,7 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
                   {update && <Loader2 className="ml-6 h-5 w-5 animate-spin" />}
                 </Button>
               </div>
-         </div>
+            </div>
           </form>
         </Form>
       )}
@@ -266,8 +268,3 @@ const FlatRequestForm = ({ flatId }: { flatId: string }) => {
 };
 
 export default FlatRequestForm;
-
-
-
-
-

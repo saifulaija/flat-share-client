@@ -69,13 +69,13 @@ const ForgotPassword = () => {
   };
 
   return (
-    <motion.div className="flex items-center justify-center p-20"  initial={{ opacity: 0, scale: 0.9 }}
+    <motion.div className="flex items-center justify-center py-16 px-1   md:p-20"  initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ ease: "easeInOut", duration: 1, delay: 1 }}>
-      <div className="w-full max-w-lg space-y-6 p-10 border shadow-lg ">
+      <div className="w-full max-w-lg space-y-6 p-4 md:p-10 border-[.25px] border-primary/40 rounded-sm ">
         <CardHeader className="space-y-1 text-center">
-          <LockKeyhole size={40} className="mx-auto text-gray-600" />
-          <CardTitle className="text-2xl font-bold"> Forgot password</CardTitle>
+          <LockKeyhole size={40} className="mx-auto text-primary" />
+          <CardTitle className="text-xl md:text-2xl font-semibold text-primary"> Forgot password</CardTitle>
           <CardDescription className="text-gray-500 text-balance">
             Enter your email to reset your password.
           </CardDescription>

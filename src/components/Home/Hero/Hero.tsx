@@ -31,7 +31,7 @@ export const Hero = () => {
   };
 
   return (
-    <div className=" relative container md:-mt-10">
+    <div className=" relative container">
       <PageHeader>
         <div className="flex">
           <span className="flex items-center gap-2 font-semibold text-foreground">
