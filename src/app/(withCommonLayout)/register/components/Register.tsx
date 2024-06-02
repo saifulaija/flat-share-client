@@ -15,13 +15,13 @@ const Register = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="flex items-center justify-center mt-20 p-4 "
+        className="flex items-center justify-center mt-16 md:p-4 "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <div className="max-w-5xl w-full space-y-8 border rounded-lg py-4 shadow-md">
+        <div className="max-w-5xl w-full space-y-8 rounded-lg py-4">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: -20 }}

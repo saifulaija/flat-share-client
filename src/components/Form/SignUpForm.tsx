@@ -200,7 +200,7 @@ const SignUpForm = () => {
           </Button>
 
           <div className="text-balance flex justify-center items-center gap-1 text-center">
-           <span> Already have an account?</span>
+           <span>Old user?</span>
             <Link href="/login" className="text-primary hover:underline">
               Login Here
             </Link>
