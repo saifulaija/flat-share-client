@@ -1,38 +1,4 @@
-// 'use client'
-
-// import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-// import { Card } from "@/components/ui/card";
-// import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
-
-// const DetailsCard = ({id}:{id:string}) => {
-//     console.log(id)
-//     const {data,isLoading}=useGetSingleFlatQuery(id);
-//     console.log(data)
-
-//     if(isLoading){
-//         return <CustomLoader/>
-//     }
-//   return (
-//     <Card className=" mt-10">
-
-//         <div className="md:flex justify-between items-center">
-//             <div className="max-w-[400px] bg-red-600 w-full">
-//                 image
-//             </div>
-//             <div className="max-w-[800px] bg-green-600 w-full">
-//               details
-//             </div>
-
-//         </div>
-
-//     </Card>
-//   )
-// }
-
-// export default DetailsCard
-
 "use client";
-
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
 import {
   Card,
@@ -47,14 +13,29 @@ import { Button } from "@/components/ui/button";
 import useUserInfo from "@/hooks/useUserInfo";
 import ImageSlider from "./ImageSlider";
 import { IImage } from "@/types/image";
+import { formateDate, formateMoney } from "@/utils/common";
+import { useToast } from "@/components/ui/use-toast";
 
 const DetailsCard = ({ id }: { id: string }) => {
+  const { toast } = useToast();
   const user = useUserInfo();
-  console.log(user)
+
   const { data, isLoading } = useGetSingleFlatQuery(id);
-  console.log(data)
+
+  const isBooked = data?.booking?.some(
+    (booking: any) => booking.status === "BOOKED"
+  );
 
   const handleFlatShareClick = () => {
+    if (isBooked) {
+      toast({
+        variant: "destructive",
+        title: "Flat Booked",
+        description: "This flat is already booked!!",
+      });
+      // alert("This flat is already booked.");
+      return;
+    }
     if (!user?.userId) {
       const confirmLogin = window.confirm(
         "You need to log in first. Would you like to go to the login page?"
@@ -63,7 +44,6 @@ const DetailsCard = ({ id }: { id: string }) => {
         window.location.href = "/login";
       }
     } else {
-      // If user is already logged in, proceed to blog page
       window.location.href = `/flats/flat-request/${data?.id}`;
     }
   };
@@ -74,7 +54,7 @@ const DetailsCard = ({ id }: { id: string }) => {
 
   const flat = data;
 
-  const images:any[] = data?.image;
+  const images: any[] = data?.image;
   const isDisabled = user?.userId === data?.userId;
 
   return (
@@ -85,50 +65,57 @@ const DetailsCard = ({ id }: { id: string }) => {
         </div>
         <div className="max-w-[800px] w-full p-4 space-y-4">
           <div className="flex items-center space-x-2">
-            <MapPin className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">
-              {flat?.location}
-            </p>
+            <p className="font-medium text-lg">Location:</p>
+            <p className="text-sm">{flat?.location}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <DollarSign className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">
-              Rent: ${flat?.rentAmount}
-            </p>
+            <p className="font-medium text-lg">Amenities:</p>
+            <p className="text-sm">{flat?.amenities}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <CreditCard className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">
-              Advance: ${flat?.advanceAmount}
-            </p>
+            <p className="font-medium text-lg">Rent Amounts:</p>
+            <p className="text-sm">{formateMoney(flat?.rentAmount)}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <Expand className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">
-              Space: {flat?.space} sq.ft
-            </p>
+            <p className="font-medium text-lg">Advance Amounts:</p>
+            <p className="text-sm">{formateMoney(flat?.advanceAmount)}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <Bed className="w-6 h-6 text-gray-700" />
-            <p className="text-lg font-medium text-gray-700">
-              Bedrooms: {flat?.bedRooms}
-            </p>
+            <p className="font-medium text-lg">Bed Rooms:</p>
+            <p className="text-sm">{flat?.bedRooms}</p>
           </div>
-          <p className="text-gray-700">{flat?.description}</p>
+
+          <div className="flex items-center space-x-2">
+            <p className="font-medium text-lg">Space:</p>
+            <p className="text-sm">{flat?.space} sq.ft</p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <p className="font-medium text-lg">Booking Request:</p>
+            <p className="text-sm">{flat?.Request_Flat?.length}</p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <p className="font-medium text-lg">Created Time:</p>
+            <p className="text-sm">{formateDate(flat?.createdAt)}</p>
+          </div>
+          <div className="flex flex-col space-x-2">
+            <p className="font-medium text-lg">Description:</p>
+            <p className="text-sm">{flat?.description}</p>
+          </div>
+
           <div className="relative mt-4 group">
-      <Button
-        onClick={handleFlatShareClick}
-        disabled={isDisabled}
-        className={`relative ${isDisabled ? 'cursor-not-allowed' : ''}`}
-      >
-        {isDisabled ? 'Your Shared Flat' : 'Share Request'}
-      </Button>
-      {isDisabled && (
-        <div className="absolute bottom-full mb-2 left-40 transform -translate-x-1/2 w-40 bg-muted/95  text-center text-xs rounded-lg py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          It is your shared flat
-        </div>
-      )}
-    </div>
+            <Button
+              onClick={handleFlatShareClick}
+              disabled={isDisabled}
+              className={`relative ${isDisabled ? "cursor-not-allowed" : ""}`}
+            >
+              {isDisabled ? "Your Shared Flat" : "Share Request"}
+            </Button>
+            {isDisabled && (
+              <div className="absolute bottom-full mb-2 left-40 transform -translate-x-1/2 w-40 bg-muted/95  text-center text-xs rounded-lg py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                It is your shared flat
+              </div>
+            )}
+          </div>
         </div>
       </CardContent>
     </div>
