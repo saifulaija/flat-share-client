@@ -31,34 +31,31 @@ const MyFlatCard = ({ item }: any) => {
       <Image
         src={item?.image[0].url || "logo"}
         alt="image"
-        width={100}
-        height={80}
+        width={60}
+        height={60}
         className="self-center rounded-md"
       />
       <div className="text-muted-foreground ">
-        <p className="flex items-center gap-1.5">
-          <LocateIcon size={16} className="shrink-0" />
-          {item.location}
-        </p>
+        <div className="flex items-center gap-1">
+         <p className="font-semibold">Location:</p>
+          <p>{item.location}</p>
+        </div>
+      </div>
+      
+      <div className="text-muted-foreground">
+        <div className="flex items-center gap-1">
+          <p className="font-semibold">RentAmount: </p>
+          <p>{formateMoney(item.rentAmount)}</p>
+        </div>
       </div>
       <div className="text-muted-foreground">
-        <p className="flex items-center gap-1.5">
-          {formateMoney(item.rentAmount)}
-        </p>
-      </div>
-      <div className="text-muted-foreground">
-        <p className="flex items-center gap-1.5">
-          <p>Advance: </p>
-          {formateMoney(item.rentAmount)}
-        </p>
+        <div className="flex items-center gap-1">
+          <p className="font-semibold">BedRooms: </p>
+          <p>{item?.bedRooms}</p>
+        </div>
       </div>
 
-      <div className="text-muted-foreground">
-        <p className="flex items-center gap-1.5">
-          <Clock size={16} className="shrink-0" />
-          {formateDate(item?.createdAt)}
-        </p>
-      </div>
+     
 
       <div className="text-muted-foreground">
         <p className="flex items-center gap-1.5">
