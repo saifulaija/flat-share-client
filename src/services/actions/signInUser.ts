@@ -3,6 +3,7 @@
 import { FieldValues } from "react-hook-form";
 import setAccessToken from "./setAccessToken";
 import { jwtDecode } from "jwt-decode";
+import { cache } from "react";
 
 export const signInUser = async (data: FieldValues) => {
   const res = await fetch(
@@ -15,7 +16,9 @@ export const signInUser = async (data: FieldValues) => {
       body: JSON.stringify(data),
       // cache: "no-store",
       credentials: "include",
+      // cache:'no-store'
     }
+    
   );
 
   const userInfo = await res.json();

@@ -1,18 +1,12 @@
 "use client";
 import CustomLoader from "@/components/shared/CustomLoader/CustomLoader";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+
 import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
-import { MapPin, DollarSign, Bed, Expand, CreditCard } from "lucide-react";
-import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import useUserInfo from "@/hooks/useUserInfo";
 import ImageSlider from "./ImageSlider";
-import { IImage } from "@/types/image";
+
 import { formateDate, formateMoney } from "@/utils/common";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -33,7 +27,7 @@ const DetailsCard = ({ id }: { id: string }) => {
         title: "Flat Booked",
         description: "This flat is already booked!!",
       });
-      // alert("This flat is already booked.");
+
       return;
     }
     if (!user?.userId) {
@@ -59,11 +53,11 @@ const DetailsCard = ({ id }: { id: string }) => {
 
   return (
     <div className="mt-10 border rounded-lg p-5">
-      <CardContent className="p-4 md:flex justify-between">
+      <div className="p-4 md:flex justify-between">
         <div className="max-w-[400px] w-full">
           <ImageSlider images={images} />
         </div>
-        <div className="max-w-[800px] w-full p-4 space-y-4">
+        <div className="max-w-[800px] w-full p-4 space-y-3">
           <div className="flex items-center space-x-2">
             <p className="font-medium text-lg">Location:</p>
             <p className="text-sm">{flat?.location}</p>
@@ -98,7 +92,7 @@ const DetailsCard = ({ id }: { id: string }) => {
             <p className="text-sm">{formateDate(flat?.createdAt)}</p>
           </div>
           <div className="flex flex-col space-x-2">
-            <p className="font-medium text-lg">Description:</p>
+            <p className="font-medium text-lg text-balance">Description:</p>
             <p className="text-sm">{flat?.description}</p>
           </div>
 
@@ -117,7 +111,7 @@ const DetailsCard = ({ id }: { id: string }) => {
             )}
           </div>
         </div>
-      </CardContent>
+      </div>
     </div>
   );
 };
