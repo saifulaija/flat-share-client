@@ -1,25 +1,22 @@
 import { USER_ROLE } from "@/constants/role";
-import {  ISidebarItem, UserRole } from "@/types";
+import { ISidebarItem, UserRole } from "@/types";
 
 import { UserCog } from "lucide-react";
 
 import {
-  
-    Home,
-   
-    Users,
-    Container,
-   PanelsTopLeft,
-   Columns4,
-    FileKey,
-    Cuboid,
-    Album
-  } from "lucide-react";
+  Users,
+  Container,
+  PanelsTopLeft,
+  FileKey,
+  Cuboid,
+  Album,
+  LayoutDashboard
+} from "lucide-react";
 
 export const drawerItems = (role: UserRole): ISidebarItem[] => {
   const roleMenus: ISidebarItem[] = [];
   const defaultMenus = [
-   
+
     {
       title: "Change Password",
       path: `change-password`,
@@ -30,6 +27,7 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
       path: `${role}/profile`,
       icon: UserCog,
     },
+
   ];
   switch (role) {
     case USER_ROLE.ADMIN:
@@ -37,7 +35,7 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
         {
           title: "Dashboard",
           path: `${role}`,
-          icon: Home,
+          icon: LayoutDashboard,
         },
         {
           title: "User Management",
@@ -56,7 +54,7 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
         {
           title: "Dashboard",
           path: `${role}`,
-          icon: Columns4,
+          icon: LayoutDashboard,
         },
         {
           title: "Add Flats",
@@ -82,3 +80,5 @@ export const drawerItems = (role: UserRole): ISidebarItem[] => {
 
   return [...roleMenus, ...defaultMenus];
 };
+
+

@@ -38,8 +38,8 @@ export function FlatDataTable<TData, TValue>({
   return (
     <>
       {/* table */}
-      <div className="rounded-md border">
-        <Table>
+      <div className="rounded-md border  overflow-x-auto">
+        <Table className="min-w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -49,9 +49,9 @@ export function FlatDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}

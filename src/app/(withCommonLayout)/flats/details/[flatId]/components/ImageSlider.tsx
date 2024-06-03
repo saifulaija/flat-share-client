@@ -97,7 +97,7 @@ export default function ImageSlider({ images }: { images: IImage[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
 
   return (
-    <section className='min-h-screen py-12'>
+    <section className='h-[480px] md:min-h-screen md:py-12'>
       <div className='container'>
         <Swiper
           loop={true}

@@ -188,7 +188,7 @@ const Flats = () => {
         </div>
       </div>
 
-      <div className="container mx-auto">
+      <div className="w-full flex justify-center items-center">
         {data?.data?.length > 0 ? (
           <div className="grid md:grid-cols-3 gap-4">
             {data?.data?.map((flat: any, index: any) => (

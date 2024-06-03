@@ -57,37 +57,37 @@ const DetailsCard = ({ id }: { id: string }) => {
         <div className="max-w-full md:max-w-[400px] w-full">
           <ImageSlider images={images} />
         </div>
-        <div className="max-w-[800px] w-full p-1 md:p-4 space-y-3">
-          <div className="flex items-center space-x-2">
+        <div className="max-w-[800px] w-full p-1 md:p-4 space-y-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Location:</p>
             <p className="text-sm">{flat?.location}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Amenities:</p>
             <p className="text-sm">{flat?.amenities}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Rent Amounts:</p>
             <p className="text-sm">{formateMoney(flat?.rentAmount)}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Advance Amounts:</p>
             <p className="text-sm">{formateMoney(flat?.advanceAmount)}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Bed Rooms:</p>
             <p className="text-sm">{flat?.bedRooms}</p>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Space:</p>
             <p className="text-sm">{flat?.space} sq.ft</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Booking Request:</p>
             <p className="text-sm">{flat?.Request_Flat?.length}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-x-2">
             <p className="font-medium text-lg">Created Time:</p>
             <p className="text-sm">{formateDate(flat?.createdAt)}</p>
           </div>

@@ -5,6 +5,7 @@ import {
   Bell,
   CircleUser,
   Home,
+  HomeIcon,
   LineChart,
   Menu,
   Package,
@@ -72,6 +73,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                 <SidebarLink key={index} item={item} />
               ))}
             </nav>
+
           </div>
         </div>
       </div>
@@ -94,11 +96,27 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
+              <Link
+                href="/"
+                className="flex items-center gap-2 font-semibold text-foreground"
+              >
+                {/* <Package2 className="h-6 w-6" /> */}
+                <Image
+                  src={assets.svg.logo}
+                  width={30}
+                  height={30}
+                  alt="logo"
+                />
+                <span className="tracking-wide">
+                  Share<span className="text-primary text-xl">N</span>est
+                </span>
+              </Link>
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 {sidebarItems.map((item, index) => (
                   <SidebarLink key={index} item={item} />
                 ))}
               </nav>
+
             </SheetContent>
 
           </Sheet>

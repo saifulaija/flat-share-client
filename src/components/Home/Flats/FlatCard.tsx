@@ -27,7 +27,7 @@ const FlatCard = ({ flat }: any) => {
   };
 
   return (
-    <div className="shadow-md w-[380px] md:w-[400px] max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
+    <div className="shadow-md w-[370px]  max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
       <CardHeader>
         <Image
           className="rounded-lg"
