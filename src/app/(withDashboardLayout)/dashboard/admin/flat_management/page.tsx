@@ -15,7 +15,7 @@ const FlatManagementPage = () => {
 
   
   return (
-   <section className='py-5'>
+   <section className='py-5 px-2'>
     <div>
       <h3 className='text xl md:text-3xl font-bold mb-4'>All Flats</h3>
      {

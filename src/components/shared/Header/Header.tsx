@@ -16,10 +16,6 @@ import dynamic from "next/dynamic";
 
 const Header = () => {
   const pathname = usePathname();
-  // const AuthDropdown = dynamic(
-  //   () => import("./AuthDropdown"),
-  //   { ssr: false }
-  // );
 
   const user = getUserInfo();
   const [scrolled, setScrolled] = useState(false);
@@ -46,11 +42,10 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 h-16 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 h-16 ${scrolled
           ? "shadow-md border-b bg-background/90 backdrop-blur-lg"
           : "bg-background/70 border-b"
-      }`}
+        }`}
     >
       <div className="container mx-auto md:px-4">
         <header className="flex h-16 items-center justify-between">
@@ -67,7 +62,7 @@ const Header = () => {
                   href="/"
                   className="flex items-center gap-2 font-semibold text-foreground"
                 >
-                  {/* <Package2 className="h-6 w-6" /> */}
+
                   <Image
                     src={assets.svg.logo}
                     width={30}
@@ -84,11 +79,10 @@ const Header = () => {
                       <Link
                         href={menuItem.path}
                         key={menuItem.label}
-                        className={`link ${
-                          pathname === menuItem.path
+                        className={`link ${pathname === menuItem.path
                             ? "border-b-2 space-x-2 w-[60px] border-primary"
                             : ""
-                        } text-foreground`}
+                          } text-foreground`}
                       >
                         {menuItem.label}
                       </Link>
@@ -127,11 +121,10 @@ const Header = () => {
                 <Link
                   href={menuItem.path}
                   key={menuItem.label}
-                  className={`group inline-flex h-9 w-max items-center rounded-md px-4 py-2 text-sm font-medium ${
-                    pathname === menuItem.path
+                  className={`group inline-flex h-9 w-max items-center rounded-md px-4 py-2 text-sm font-medium ${pathname === menuItem.path
                       ? "border-b-2 border-primary"
                       : ""
-                  } text-foreground`}
+                    } text-foreground`}
                 >
                   {menuItem.label}
                 </Link>

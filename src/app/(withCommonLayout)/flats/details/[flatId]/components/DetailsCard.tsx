@@ -97,13 +97,15 @@ const DetailsCard = ({ id }: { id: string }) => {
           </div>
 
           <div className="relative mt-4 group">
-            <Button
+            {/* <Button
               onClick={handleFlatShareClick}
               disabled={isDisabled}
               className={`relative ${isDisabled ? "cursor-not-allowed" : ""}`}
             >
               {isDisabled ? "Your Shared Flat" : "Share Request"}
-            </Button>
+            </Button> */}
+
+            
             {isDisabled && (
               <div className="absolute bottom-full mb-2 left-40 transform -translate-x-1/2 w-40 bg-muted/95  text-center text-xs rounded-lg py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 It is your shared flat

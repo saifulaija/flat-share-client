@@ -27,7 +27,8 @@ const FlatCard = ({ flat }: any) => {
   };
 
   return (
-    <div className="shadow-md w-[370px]  max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
+    // <div className="shadow-lg w-[350px] md:w-96  max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-105 transform transition-all duration-500 ease-in-out">
+    <div className="shadow-lg w-[350px] md:w-96  max-h-[500px] border rounded-md h-full overflow-hidden hover:scale-95 transform transition-all duration-500 ease-in-out">
       <CardHeader>
         <Image
           className="rounded-lg"
@@ -59,7 +60,7 @@ const FlatCard = ({ flat }: any) => {
         <p>Rooms:{flat?.bedRooms}</p>
 
         <Link href={`/flats/details/${flat?.id}`}>
-          {" "}
+         
           <Button>Details</Button>
         </Link>
       </CardFooter>

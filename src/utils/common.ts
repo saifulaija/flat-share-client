@@ -1,3 +1,4 @@
+import { getUserInfo } from '@/services/authServics';
 import {formatDistanceToNowStrict} from 'date-fns'
 
 export const formateMoney=(amount:string)=>{
@@ -12,3 +13,4 @@ export const formateMoney=(amount:string)=>{
 export const formateDate=(from:Date)=>{
     return formatDistanceToNowStrict(from,{addSuffix:true})
 };
+

@@ -20,6 +20,7 @@ const AuthDropdown = () => {
   const { toast } = useToast();
   const user = getUserInfo();
 
+
   const router = useRouter();
   const handleLogout = () => {
     logoutUser(router);

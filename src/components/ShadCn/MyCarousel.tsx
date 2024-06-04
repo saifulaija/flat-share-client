@@ -38,13 +38,13 @@ export function MyCarousel({ items }: MyCarouselProps) {
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
-              <Card>
+              <div className="border shadow-lg rounded-md">
                 <CardContent className="flex flex-col items-center justify-center p-6 h-52">
                 <Heart className="text-red-500 mb-2" size={36} />
                   <p className="text-lg font-semibold">{item.title}</p>
                   <p className="mt-2 text-sm">{item.content}</p>
                 </CardContent>
-              </Card>
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

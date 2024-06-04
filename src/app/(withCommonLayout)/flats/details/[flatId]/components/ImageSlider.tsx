@@ -133,7 +133,7 @@ export default function ImageSlider({ images }: { images: IImage[] }) {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className='thumbs mt-3 h-16 w-full rounded-md'
+          className='thumbs mt-3 h-12 w-full rounded-md'
         >
           {images.map((image: IImage, index: number) => (
             <SwiperSlide key={index}>
@@ -143,7 +143,7 @@ export default function ImageSlider({ images }: { images: IImage[] }) {
                   alt='image'
                   width={50}
                   height={20}
-                  className='block h-full w-full object-cover'
+                  className='block h-full rounded-md w-full object-cover'
                 />
               </button>
             </SwiperSlide>
