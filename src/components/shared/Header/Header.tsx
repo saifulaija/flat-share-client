@@ -32,6 +32,7 @@ const Header = () => {
 
   const menuItems = [
     { label: "Home", path: "/", show: true },
+    { label: "Flats", path: "/flats", show: true },
     { label: "About Us", path: "/about-us", show: true },
     {
       label: "Dashboard",

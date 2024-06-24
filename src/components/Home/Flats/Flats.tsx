@@ -36,6 +36,7 @@ const Flats = () => {
   }
 
   const { data, isLoading } = useGetAllFlatsQuery({ ...query });
+ 
 
   const meta = data?.meta;
 

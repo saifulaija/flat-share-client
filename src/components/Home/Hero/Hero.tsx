@@ -27,6 +27,7 @@ import { useRouter } from "next/navigation";
 
 export const Hero = () => {
   const user = useUserInfo();
+  console.log(user)
   const router = useRouter()
 
   const handleLogin = () => {
@@ -59,7 +60,7 @@ export const Hero = () => {
         <PageActions>
 
           {
-            user?.userId ? <Button onClick={handleShareFlat}>Share Your Flat</Button> : (
+            user?.userId ? <Button disabled={user.role === 'admin'} onClick={handleShareFlat}>Share Your Flat</Button> : (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button>Share Your Flat</Button>

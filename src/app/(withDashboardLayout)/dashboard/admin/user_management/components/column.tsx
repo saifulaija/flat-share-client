@@ -24,8 +24,8 @@ export const columns: ColumnDef<User>[] = [
       return (
         <Image
           src={profilePhoto || '/logo'}
-          width={70}
-          height={70}
+          width={40}
+          height={40}
           alt="profilePhoto"
           className="self-center rounded-md"
         />

@@ -32,8 +32,8 @@ export const columns: ColumnDef<Flat>[] = [
       return (
         <Image
           src={profilePhoto}
-          width={70}
-          height={70}
+          width={40}
+          height={40}
           alt="flat image"
           className="self-center rounded-md"
         />
@@ -93,7 +93,7 @@ export const columns: ColumnDef<Flat>[] = [
     cell: ({ row }) => {
       const flat = row.original;
       return (
-        <div className="my-10">
+        <div>
           <MyDialog triggerButton={<Button variant="outline">Edit</Button>}>
             <FlatUpdateForm data={flat} />
           </MyDialog>
