@@ -9,9 +9,9 @@ const GoToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   };
   const listenToScroll = () => {
-    const heightToHidden: number = 250; 
+    const heightToHidden: number = 250;
     const winScroll: number =
-      (document.body.scrollTop || document.documentElement.scrollTop) as number; 
+      (document.body.scrollTop || document.documentElement.scrollTop) as number;
     if (winScroll > heightToHidden) {
       setIsVisible(true);
     } else {

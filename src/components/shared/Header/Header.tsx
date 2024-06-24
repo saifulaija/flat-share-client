@@ -12,7 +12,7 @@ import assets from "@/assets";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { getUserInfo } from "@/services/authServics";
-import dynamic from "next/dynamic";
+
 
 const Header = () => {
   const pathname = usePathname();
