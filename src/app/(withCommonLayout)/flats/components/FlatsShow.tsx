@@ -4,9 +4,9 @@
 
 "use client";
 
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
+
 import NoData from "@/components/shared/NoData/NoData";
-import FlatCard from "./FlatCard";
+
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
@@ -20,11 +20,12 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import FlatCard from "./FlatCard";
 
 
-const Flats = () => {
+
+const FlatsShow = () => {
   const query: Record<string, any> = {};
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
@@ -57,21 +58,9 @@ const Flats = () => {
 
   const pageCount = meta?.total ? Math.ceil(meta.total / limit) : 0;
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-
 
   return (
-  <motion.div  ref={ref}
-  style={{
-    scale: scaleProgess,
-    opacity: opacityProgess,
-  }} className="w-full">
+  <div className="w-full">
       <div className="container flex justify-center items-center">
         <div>
         <CustomHeader title="Find Flats" />
@@ -136,9 +125,9 @@ const Flats = () => {
   </div>
         </div>
       </div>
-  </motion.div>
+  </div>
   );
 };
 
-export default Flats;
+export default FlatsShow;
 

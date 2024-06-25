@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import { MyCarousel } from "@/components/ShadCn/MyCarousel";
 import MyAccordion from "@/components/ShadCn/MyAccordian";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 interface Testimonial {
   name: string;
@@ -66,8 +68,20 @@ const Testimonials: React.FC = () => {
     content: testimonial.testimonial,
   }));
 
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.33 1"],
+  });
+  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+
   return (
-    <div className="container mx-auto">
+    <motion.div  ref={ref}
+    style={{
+      scale: scaleProgess,
+      opacity: opacityProgess,
+    }} className="container mx-auto">
       <div>
         <CustomHeader title="Testimonials" />
         <div className="space-y-16">
@@ -98,7 +112,7 @@ const Testimonials: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,12 +1,10 @@
-import { Loader2 } from 'lucide-react';
+import { Loader, Loader2 } from 'lucide-react';
 import React from 'react';
 
 const CustomLoader = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-    
-<Loader2 size={40} className='animate-spin text-primary'/>
-  
+      <Loader size={35} className='animate-spin text-primary'/>
     </div>
   );
 };

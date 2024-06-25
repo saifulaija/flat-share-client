@@ -1,8 +1,10 @@
 // pages/benefits.tsx
-
+'use client'
 import React from "react";
 import { HandCoins, PackageCheck, CheckCheck } from "lucide-react";
 import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const benefits = [
   {
@@ -25,9 +27,22 @@ const benefits = [
   },
 ];
 
+
+
 const Benefits = () => {
+  const ref = useRef<HTMLDivElement>(null);
+const { scrollYProgress } = useScroll({
+  target: ref,
+  offset: ["0 1", "1.33 1"],
+});
+const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
   return (
-    <div className="container mx-auto py-16 px-4">
+    <motion.div ref={ref}
+      style={{
+        scale: scaleProgess,
+        opacity: opacityProgess,
+      }} className="container mx-auto py-16 px-4">
       <div className="text-center mb-12">
         <CustomHeader title="Benefits of Sharing" />
         <p className="text-lg mt-4 text-balance">
@@ -47,7 +62,7 @@ const Benefits = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

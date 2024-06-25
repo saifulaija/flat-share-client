@@ -18,6 +18,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import useUserInfo from "@/hooks/useUserInfo";
 
 import assets from "@/assets";
@@ -27,7 +30,7 @@ import { useRouter } from "next/navigation";
 
 export const Hero = () => {
   const user = useUserInfo();
-  console.log(user)
+
   const router = useRouter()
 
   const handleLogin = () => {
@@ -37,8 +40,21 @@ export const Hero = () => {
     router.push(`/dashboard/${user?.role}/flats`)
   }
 
+
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.33 1"],
+  });
+  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+
   return (
-    <div className=" relative container">
+    <motion.div  ref={ref}
+    style={{
+      scale: scaleProgess,
+      opacity: opacityProgess,
+    }} className=" relative container">
       <PageHeader>
         <div className="flex">
           <span className="flex items-center gap-2 font-semibold text-foreground">
@@ -86,6 +102,6 @@ export const Hero = () => {
       <video className="rounded-xl md:-mt-14" autoPlay muted loop>
         <source src="/content/new-hero.mp4" type="video/mp4" />
       </video>
-    </div>
+    </motion.div>
   );
 };
