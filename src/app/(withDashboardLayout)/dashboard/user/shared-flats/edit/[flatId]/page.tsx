@@ -132,6 +132,7 @@ const UpdateFlatPage = ({ params }: TProps) => {
                             <Input
                               type="file"
                               accept="image/*"
+                              required
                               onChange={(e) => field.onChange(e.target.files)}
                             />
                           </FormControl>

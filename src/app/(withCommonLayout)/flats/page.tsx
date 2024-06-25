@@ -4,9 +4,9 @@
 
 "use client";
 
-import CustomHeader from "../../shared/CustomHeader/CustomHeader";
+
 import NoData from "@/components/shared/NoData/NoData";
-import FlatCard from "./FlatCard";
+
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
@@ -20,6 +20,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useGetAllFlatsQuery } from "@/redux/api/flatApi";
+import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import FlatCard from "./components/FlatCard";
 
 
 const Flats = () => {

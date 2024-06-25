@@ -58,7 +58,7 @@ export const userApi = baseApi.injectEndpoints({
         url: `/admin/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.admin,tagTypes.userProfile,tagTypes.user],
     }),
     // update a Admin
     updateUser: build.mutation({
@@ -67,7 +67,7 @@ export const userApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.user,tagTypes.userProfile],
+      invalidatesTags: [tagTypes.user,tagTypes.userProfile,tagTypes.admin,tagTypes.user],
     }),
     getMyProfile: build.query({
       query: () => ({
