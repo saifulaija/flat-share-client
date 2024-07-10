@@ -2,7 +2,7 @@
 
 # ShareNest
 
-![ShareNest Home Page](./src//assets/images/homepage-01.png)
+## For more details, visit the [FlatShare Backend Repository](https://github.com/saifulaija/flatshare-backend).
 
 [![Website](https://img.shields.io/website-up-down-green-red/https/room-share.vercel.app.svg)](https://room-share.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-Framework-blue)](https://nextjs.org/)
