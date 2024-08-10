@@ -5,7 +5,7 @@ import setAccessToken from "@/services/actions/setAccessToken";
 import { getNewAccessToken } from "@/services/authServics";
 
 import {
-  IGenericErrorMessage,
+
   IGenericErrorResponse,
   ResponseSuccessType,
 } from "@/types";
