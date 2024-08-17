@@ -17,15 +17,15 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
         {/* Brand and Address */}
         <div className="flex flex-col gap-2 text-foreground">
-          <Link href="/" className="flex items-center gap-2 text-primary">
-            <Image
-              src={assets.svg.logo}
-              width={40}
-              height={40}
-              alt="logo"
-              className="text-primary"
-            />
-            <span className="text-xl">ShareNest</span>
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold text-foreground"
+          >
+            {/* <Package2 className="h-6 w-6" /> */}
+            <Image src={assets.images.logo} width={30} height={30} alt="logo" />
+            <span className="tracking-wide">
+              Share<span className="text-primary text-xl">N</span>est
+            </span>
           </Link>
           <p className="flex items-center gap-2 text-foreground">
             <MapPin className="h-4 w-4" />

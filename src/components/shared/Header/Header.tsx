@@ -65,7 +65,7 @@ const Header = () => {
                 >
 
                   <Image
-                    src={assets.svg.logo}
+                    src={assets.images.logo}
                     width={30}
                     height={30}
                     alt="logo"
@@ -104,7 +104,7 @@ const Header = () => {
               >
                 {/* <Package2 className="h-6 w-6" /> */}
                 <Image
-                  src={assets.svg.logo}
+                  src={assets.images.logo}
                   width={30}
                   height={30}
                   alt="logo"
