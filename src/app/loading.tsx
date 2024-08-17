@@ -1,10 +1,9 @@
-import { Loader as LucideLoader } from "lucide-react";
-import React from 'react';
+import React from "react";
 
 const Loader = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <LucideLoader size={35} className='animate-spin text-primary'/>
+      <div className="border-gray-300 h-12 w-12 animate-spin rounded-full border-4 border-t-primary"></div>
     </div>
   );
 };

@@ -1,12 +1,11 @@
-import { Loader, Loader2 } from 'lucide-react';
-import React from 'react';
+import React from "react";
 
-const CustomLoader = () => {
+const Loader = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <Loader size={35} className='animate-spin text-primary'/>
+      <div className="border-gray-300 h-12 w-12 animate-spin rounded-full border-4 border-t-primary"></div>
     </div>
   );
 };
 
-export default CustomLoader;
+export default Loader;
